@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLAT DESIGN // MetroPulse 2013 Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* STYLE BAR */
+    .style-bar {
+      background: #000000;
+      border-bottom: 2px solid #333333;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .style-bar-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #888888;
+      margin-right: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .style-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 4px 10px;
+      background: #222222;
+      transition: background 0.15s;
+    }
+    .style-link:hover {
+      background: #444444;
+    }
+    .style-link.active {
+      background: #0072c6;
+      font-weight: 700;
+    }
+
+    /* FLAT DESIGN BASE (ZERO SHADOWS, ZERO GRADIENTS, PURE COLORS) */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #111111;
+      color: #ffffff;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* HEADER */
+    .flat-header {
+      margin-bottom: 36px;
+    }
+    .flat-brand {
+      font-size: 3.2rem;
+      font-weight: 300;
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .flat-sub {
+      font-size: 1.1rem;
+      color: #999999;
+      font-weight: 400;
+    }
+
+    /* THE METRO LIVE TILES GRID */
+    .metro-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .tile {
+      padding: 24px;
+      color: #ffffff;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 160px;
+      transition: opacity 0.15s;
+      user-select: none;
+    }
+    .tile:hover {
+      opacity: 0.92;
+    }
+    .tile:active {
+      transform: scale(0.98);
+    }
+
+    /* TILE SPANS */
+    .tile-wide { grid-column: span 2; }
+    .tile-tall { grid-row: span 2; }
+    .tile-large { grid-column: span 2; grid-row: span 2; }
+
+    /* PURE FLAT PALETTE */
+    .bg-blue { background: #0072c6; }
+    .bg-teal { background: #008272; }
+    .bg-orange { background: #d83b01; }
+    .bg-purple { background: #6b2890; }
+    .bg-green { background: #107c10; }
+    .bg-magenta { background: #e81123; }
+    .bg-yellow { background: #ffb900; color: #000; }
+    .bg-yellow .tile-title, .bg-yellow .tile-sub { color: #000; }
+
+    .tile-icon {
+      font-size: 2.2rem;
+    }
+    .tile-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .tile-sub {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+    .tile-badge {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
+      font-size: 1.8rem;
+      font-weight: 300;
+    }
+
+    /* WEATHER TILE DETAIL */
+    .weather-temp {
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    /* FLAT BUTTONS */
+    .flat-btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .btn-flat {
+      background: #2b2b2b;
+      color: #ffffff;
+      border: none;
+      padding: 14px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+    .btn-flat:hover {
+      background: #3a3a3a;
+    }
+    .btn-flat-accent {
+      background: #0072c6;
+    }
+    .btn-flat-accent:hover {
+      background: #005a9e;
+    }
+
+    @media (max-width: 850px) {
+      .metro-grid { grid-template-columns: repeat(2, 1fr); }
+      .tile-wide { grid-column: span 2; }
+      .tile-large { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STYLE BAR -->
+  <nav class="style-bar">
+    <span class="style-bar-title">UI Design:</span>
+    <a href="index.html" class="style-link">🥊 Neo-Brutalism</a>
+    <a href="bento.html" class="style-link">🍱 Bento Grid</a>
+    <a href="glass.html" class="style-link">🪟 Glassmorphism</a>
+    <a href="neumorphism.html" class="style-link">🪨 Neumorphism</a>
+    <a href="skeuomorphism.html" class="style-link">🪵 Skeuomorphism</a>
+    <a href="claymorphism.html" class="style-link">🧸 Claymorphism</a>
+    <a href="flat.html" class="style-link active">📄 Flat Design</a>
+    <a href="material.html" class="style-link">📐 Material Design</a>
+    <a href="minimalism.html" class="style-link">🏛️ Swiss Minimal</a>
+    <a href="cyberpunk.html" class="style-link">🕹️ Cyberpunk Y2K</a>
+    <a href="museum.html" class="style-link" style="margin-left: auto;">🏛️ Se Museum</a>
+  </nav>
+
+  <div class="container">
+    <header class="flat-header">
+      <h1 class="flat-brand">start</h1>
+      <p class="flat-sub">Flat Design // Windows Metro & 2013-æraen</p>
+    </header>
+
+    <!-- METRO LIVE TILES -->
+    <div class="metro-grid">
+      <!-- WIDE MAIL TILE -->
+      <div class="tile tile-wide bg-blue" onclick="tileClick('E-post')">
+        <span class="tile-icon">✉️</span>
+        <div>
+          <h3 class="tile-title">Outlook E-post</h3>
+          <p class="tile-sub">Team Sync kl 14:00 • Fra: Anders</p>
+        </div>
+        <span class="tile-badge">14</span>
+      </div>
+
+      <!-- WEATHER TILE -->
+      <div class="tile bg-teal" onclick="tileClick('Vær')">
+        <span class="tile-icon">☀️</span>
+        <div>
+          <div class="weather-temp">18°</div>
+          <p class="tile-sub">Oslo • Delvis skyet</p>
+        </div>
+      </div>
+
+      <!-- CALENDAR TILE -->
+      <div class="tile bg-orange" onclick="tileClick('Kalender')">
+        <span class="tile-icon">📅</span>
+        <div>
+          <h3 class="tile-title">Tirsdag</h3>
+          <p class="tile-sub">Design Review</p>
+        </div>
+        <span class="tile-badge">16</span>
+      </div>
+
+      <!-- LARGE NEWS TILE -->
+      <div class="tile tile-large bg-purple" onclick="tileClick('Nyheter')">
+        <span class="tile-icon">📰</span>
+        <div>
+          <h2 class="tile-title" style="font-size: 1.6rem; margin-bottom: 8px;">Flat Design tok verden med storm i 2013</h2>
+          <p class="tile-sub">Apple lanserte iOS 7 og Microsoft lanserte Windows 8. All lær og glass ble erstattet av rene piksler.</p>
+        </div>
+        <span class="tile-sub" style="font-size: 0.8rem;">Oppdatert for 12 min siden</span>
+      </div>
+
+      <!-- MUSIC TILE -->
+      <div class="tile bg-green" onclick="tileClick('Musikk')">
+        <span class="tile-icon">🎵</span>
+        <div>
+          <h3 class="tile-title">Xbox Music</h3>
+          <p class="tile-sub">Daft Punk - RAM</p>
+        </div>
+      </div>
+
+      <!-- PHOTOS TILE -->
+      <div class="tile bg-magenta" onclick="tileClick('Bilder')">
+        <span class="tile-icon">📷</span>
+        <div>
+          <h3 class="tile-title">Galleri</h3>
+          <p class="tile-sub">2 480 elementer</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLAT GLOBAL FINANCIAL MARKETS TICKER -->
+    <h2 style="font-weight: 300; font-size: 1.8rem; margin-top: 50px; margin-bottom: 18px; letter-spacing: -0.5px;">Globale Markeder (Flat Finans)</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 40px;">
+      <div style="background: #2b2b2b; padding: 18px; border-left: 6px solid #107c10; cursor: pointer;" onclick="showFlatConfirm('OSEBX Oslo Børs: 1,420.50 (+1.2%)')">
+        <span style="font-size: 0.8rem; color: #aaa;">NORGE</span>
+        <div style="font-size: 1.4rem; font-weight: 600; margin: 4px 0;">OSEBX</div>
+        <div style="font-size: 1.1rem; color: #107c10; font-weight: 700;">▲ +1.24%</div>
+      </div>
+
+      <div style="background: #2b2b2b; padding: 18px; border-left: 6px solid #107c10; cursor: pointer;" onclick="showFlatConfirm('NASDAQ Tech: 18,920.10 (+0.8%)')">
+        <span style="font-size: 0.8rem; color: #aaa;">USA</span>
+        <div style="font-size: 1.4rem; font-weight: 600; margin: 4px 0;">NASDAQ</div>
+        <div style="font-size: 1.1rem; color: #107c10; font-weight: 700;">▲ +0.85%</div>
+      </div>
+
+      <div style="background: #2b2b2b; padding: 18px; border-left: 6px solid #e81123; cursor: pointer;" onclick="showFlatConfirm('S&P 500: 5,680.20 (-0.3%)')">
+        <span style="font-size: 0.8rem; color: #aaa;">USA</span>
+        <div style="font-size: 1.4rem; font-weight: 600; margin: 4px 0;">S&P 500</div>
+        <div style="font-size: 1.1rem; color: #e81123; font-weight: 700;">▼ -0.32%</div>
+      </div>
+
+      <div style="background: #2b2b2b; padding: 18px; border-left: 6px solid #107c10; cursor: pointer;" onclick="showFlatConfirm('DAX Frankfurt: 18,710.00 (+0.4%)')">
+        <span style="font-size: 0.8rem; color: #aaa;">TYSKLAND</span>
+        <div style="font-size: 1.4rem; font-weight: 600; margin: 4px 0;">DAX 40</div>
+        <div style="font-size: 1.1rem; color: #107c10; font-weight: 700;">▲ +0.42%</div>
+      </div>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="flat-btn-group">
+      <button class="btn-flat btn-flat-accent" onclick="showFlatConfirm('Primær Flat Handling bekreftet!')">Primær Flat Handling</button>
+      <button class="btn-flat" onclick="toggleCharmsBar()">Åpne Windows Charms Bar ⚙️</button>
+      <button class="btn-flat" onclick="showFlatConfirm('Fargepalett oppdatert: Windows Cobalt Blue')">Konfigurer farger</button>
+    </div>
+  </div>
+
+  <!-- WINDOWS 8 CHARMS BAR (SLIDES IN FROM RIGHT) -->
+  <div id="charmsBar" style="position: fixed; top: 0; right: -120px; width: 100px; height: 100vh; background: rgba(0, 0, 0, 0.92); z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 24px; transition: right 0.25s ease; border-left: 1px solid #333;">
+    <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer; color: #fff;" onclick="charmsAction('Søk')">
+      <span style="font-size: 1.6rem;">🔍</span>
+      <span style="font-size: 0.75rem; font-weight: 600;">Søk</span>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer; color: #fff;" onclick="charmsAction('Deling')">
+      <span style="font-size: 1.6rem;">🔗</span>
+      <span style="font-size: 0.75rem; font-weight: 600;">Del</span>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer; color: #0072c6;" onclick="charmsAction('Startskjerm')">
+      <span style="font-size: 1.8rem;">⊞</span>
+      <span style="font-size: 0.75rem; font-weight: 600;">Start</span>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer; color: #fff;" onclick="charmsAction('Enheter')">
+      <span style="font-size: 1.6rem;">💻</span>
+      <span style="font-size: 0.75rem; font-weight: 600;">Enheter</span>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer; color: #fff;" onclick="charmsAction('Innstillinger')">
+      <span style="font-size: 1.6rem;">⚙️</span>
+      <span style="font-size: 0.75rem; font-weight: 600;">Valg</span>
+    </div>
+    <div style="position: absolute; bottom: 20px; cursor: pointer; font-size: 0.8rem; color: #aaa;" onclick="toggleCharmsBar()">LUKK ✖</div>
+  </div>
+
+  <div id="flatToast" style="position: fixed; top: 50px; right: 20px; background: #0072c6; color: #ffffff; padding: 16px 24px; font-weight: 600; font-size: 0.95rem; border: none; border-left: 6px solid #ffffff; z-index: 9999; display: none;"></div>
+
+  <script>
+    const flatToast = document.getElementById('flatToast');
+    function showFlatConfirm(msg) {
+      flatToast.textContent = msg;
+      flatToast.style.display = 'block';
+      clearTimeout(flatToast._timer);
+      flatToast._timer = setTimeout(() => {
+        flatToast.style.display = 'none';
+      }, 2600);
+    }
+
+    function tileClick(name) {
+      showFlatConfirm('📄 Startet ' + name + ' (Flat Design Metro App)');
+    }
+
+    function toggleCharmsBar() {
+      const charms = document.getElementById('charmsBar');
+      if (charms.style.right === '0px') {
+        charms.style.right = '-120px';
+      } else {
+        charms.style.right = '0px';
+        showFlatConfirm('⚙️ Windows 8 Charms Bar åpnet!');
+      }
+    }
+
+    function charmsAction(name) {
+      showFlatConfirm('⚙️ Charms Bar: ' + name + ' valgt!');
+      document.getElementById('charmsBar').style.right = '-120px';
+    }
+  </script>
+</body>
+</html>

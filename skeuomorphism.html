@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKEUOMORPHISM // Vintage MasterTape Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=JetBrains+Mono:wght@700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* STYLE BAR (Common across all 10 styles) */
+    .style-bar {
+      background: #1b120c;
+      border-bottom: 2px solid #3d2a1b;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .style-bar-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #bfa182;
+      margin-right: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .style-link {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #d8c2aa;
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #422d1d, #24160a);
+      border: 1px solid #140b04;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.6);
+      transition: all 0.2s;
+    }
+    .style-link:hover {
+      background: linear-gradient(180deg, #593e28, #362211);
+      color: #fff;
+    }
+    .style-link.active {
+      background: linear-gradient(180deg, #d4ac0d, #9a7d0a);
+      color: #1a0f00;
+      font-weight: 800;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+
+    /* SKEUOMORPHISM BASE */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Georgia', serif;
+      background: radial-gradient(circle, #2c1b12 0%, #120904 100%);
+      color: #eeddc9;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* THE RECORDER CHASSIS (Wood & Leather Cabinet) */
+    .recorder-chassis {
+      background: linear-gradient(180deg, #442714 0%, #2b170a 100%);
+      border: 12px solid #180d05;
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.9), inset 0 2px 4px rgba(255,255,255,0.2), inset 0 -4px 10px rgba(0,0,0,0.9);
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    /* STITCHED LEATHER BORDER TRIM */
+    .leather-trim {
+      border: 2px dashed #926f4f;
+      border-radius: 12px;
+      padding: 24px;
+      background: linear-gradient(180deg, #382110 0%, #201107 100%);
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+    }
+
+    /* BRUSHED ALUMINUM FACEPLATE */
+    .metal-faceplate {
+      background: linear-gradient(180deg, #e8e8e8 0%, #b8b8b8 40%, #9c9c9c 70%, #7d7d7d 100%);
+      border-radius: 8px;
+      border: 2px solid #4a4a4a;
+      box-shadow: inset 0 1px 0 #ffffff, 0 6px 15px rgba(0,0,0,0.6);
+      padding: 30px;
+      color: #1a1a1a;
+      position: relative;
+    }
+
+    /* CORNER SCREWS */
+    .screw {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #e0e0e0 40%, #666 90%);
+      border: 1px solid #333;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    .screw::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 15%; width: 70%; height: 1.5px;
+      background: #222;
+      transform: translateY(-50%) rotate(35deg);
+    }
+    .screw.tl { top: 10px; left: 10px; }
+    .screw.tr { top: 10px; right: 10px; }
+    .screw.bl { bottom: 10px; left: 10px; }
+    .screw.br { bottom: 10px; right: 10px; }
+
+    /* HEADER */
+    .metal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #777;
+      padding-bottom: 14px;
+      margin-bottom: 24px;
+    }
+    .recorder-brand {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #222;
+      text-shadow: 0 1px 0 #fff;
+    }
+    .recorder-model {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: #111;
+      color: #ff9900;
+      padding: 4px 10px;
+      border-radius: 4px;
+      box-shadow: inset 0 2px 4px #000;
+    }
+
+    /* CASSETTE TAPE COMPARTMENT */
+    .tape-window {
+      background: #111;
+      border: 4px solid #333;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: inset 0 8px 20px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .cassette-body {
+      width: 100%;
+      max-width: 440px;
+      height: 170px;
+      background: linear-gradient(180deg, #2b2b2b, #151515);
+      border-radius: 10px;
+      border: 2px solid #444;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+    }
+    .cassette-label {
+      background: #f7eedb;
+      width: 85%;
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-align: center;
+      color: #333;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      border: 1px solid #b8a68d;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .cassette-reels {
+      display: flex;
+      justify-content: space-around;
+      width: 80%;
+      align-items: center;
+    }
+    .reel {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 6px solid #888;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.5), 0 2px 5px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .reel.spinning {
+      animation: spinReel 2s linear infinite;
+    }
+    @keyframes spinReel {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* VU METERS (Analog Needle Dials) */
+    .vu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .vu-meter {
+      background: #fffcf0;
+      border: 3px solid #333;
+      border-radius: 8px;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.6);
+      height: 90px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+    }
+    .vu-scale {
+      position: absolute;
+      top: 10px;
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: #444;
+      border-bottom: 1px dashed #999;
+    }
+    .vu-needle {
+      position: absolute;
+      bottom: -15px;
+      width: 2px;
+      height: 75px;
+      background: #c0392b;
+      transform-origin: bottom center;
+      transform: rotate(-25deg);
+      transition: transform 0.15s ease-out;
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    }
+    .vu-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #666;
+    }
+
+    /* GLOSSY EMBOSSED MECHANICAL BUTTONS */
+    .controls-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-skeuo {
+      background: linear-gradient(180deg, #f0f0f0 0%, #d8d8d8 45%, #bebebe 55%, #a8a8a8 100%);
+      border: 1px solid #666;
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #111;
+      text-shadow: 0 1px 0 #fff;
+      box-shadow: inset 0 1px 0 #fff, 0 4px 6px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-skeuo:active {
+      transform: translateY(2px);
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.4);
+      background: linear-gradient(180deg, #a8a8a8, #bebebe);
+    }
+    .btn-skeuo-rec {
+      background: linear-gradient(180deg, #ff6b6b 0%, #ee5253 50%, #c0392b 100%);
+      color: #fff;
+      text-shadow: 0 -1px 1px #500;
+      border-color: #800;
+    }
+    .btn-skeuo-rec:active {
+      background: linear-gradient(180deg, #c0392b, #ee5253);
+    }
+
+    /* NOTEPAD (Yellow Legal Pad) */
+    .notepad-section {
+      margin-top: 40px;
+      background: #fdfbb9;
+      border-radius: 6px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border-top: 14px solid #8e2a2a;
+      padding: 24px 30px;
+      color: #2c3e50;
+      position: relative;
+    }
+    .notepad-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 40px; bottom: 0; width: 1.5px;
+      background: #f5a5a5;
+    }
+    .notepad-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      padding-left: 24px;
+    }
+    .notepad-body {
+      padding-left: 24px;
+      font-family: 'Georgia', serif;
+      font-size: 1.05rem;
+      line-height: 28px;
+      background: repeating-linear-gradient(transparent, transparent 27px, #e8e398 28px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STYLE BAR -->
+  <nav class="style-bar">
+    <span class="style-bar-title">UI Design:</span>
+    <a href="index.html" class="style-link">🥊 Neo-Brutalism</a>
+    <a href="bento.html" class="style-link">🍱 Bento Grid</a>
+    <a href="glass.html" class="style-link">🪟 Glassmorphism</a>
+    <a href="neumorphism.html" class="style-link">🪨 Neumorphism</a>
+    <a href="skeuomorphism.html" class="style-link active">🪵 Skeuomorphism</a>
+    <a href="claymorphism.html" class="style-link">🧸 Claymorphism</a>
+    <a href="flat.html" class="style-link">📄 Flat Design</a>
+    <a href="material.html" class="style-link">📐 Material Design</a>
+    <a href="minimalism.html" class="style-link">🏛️ Swiss Minimal</a>
+    <a href="cyberpunk.html" class="style-link">🕹️ Cyberpunk Y2K</a>
+    <a href="museum.html" class="style-link" style="margin-left: auto;">🏛️ Se Museum</a>
+  </nav>
+
+  <div class="container">
+    <div class="recorder-chassis">
+      <div class="leather-trim">
+        <div class="metal-faceplate">
+          <div class="screw tl"></div>
+          <div class="screw tr"></div>
+          <div class="screw bl"></div>
+          <div class="screw br"></div>
+
+          <div class="metal-header">
+            <h1 class="recorder-brand">MASTERTAPE PRO</h1>
+            <span class="recorder-model">MODEL 1978 // HI-FI SKEUO</span>
+          </div>
+
+          <!-- CASSETTE COMPARTMENT -->
+          <div class="tape-window">
+            <div class="cassette-body">
+              <div class="cassette-label">A-Side: Acoustic Master Session (1978)</div>
+              <div class="cassette-reels">
+                <div class="reel" id="reelLeft">⚙️</div>
+                <div class="reel" id="reelRight">⚙️</div>
+              </div>
+              <span style="color: #666; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace;">FERRIC CHROMIUM TAPE // STEREO</span>
+            </div>
+          </div>
+
+          <!-- DUAL ANALOG VU METERS -->
+          <div class="vu-grid">
+            <div class="vu-meter">
+              <div class="vu-scale"><span>-20</span><span>-10</span><span>-3</span><span>0</span><span style="color: red;">+3</span></div>
+              <div class="vu-needle" id="needleLeft"></div>
+              <span class="vu-label">LEFT CHANNEL</span>
+            </div>
+
+            <div class="vu-meter">
+              <div class="vu-scale"><span>-20</span><span>-10</span><span>-3</span><span>0</span><span style="color: red;">+3</span></div>
+              <div class="vu-needle" id="needleRight"></div>
+              <span class="vu-label">RIGHT CHANNEL</span>
+            </div>
+          </div>
+
+          <!-- MECHANICAL BUTTONS -->
+          <div class="controls-row">
+            <button class="btn-skeuo" id="btnRewind">⏪ REWIND</button>
+            <button class="btn-skeuo" id="btnPlay">▶ PLAY</button>
+            <button class="btn-skeuo" id="btnPause">⏸ PAUSE</button>
+            <button class="btn-skeuo" id="btnStop">⏹ STOP</button>
+            <button class="btn-skeuo btn-skeuo-rec" id="btnRecord">⏺ REC</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTEPAD -->
+    <div class="notepad-section">
+      <h2 class="notepad-title">Notater fra innspillingen</h2>
+      <div class="notepad-body">
+        <p>1. Skeuomorphism var Apples flaggskip-design fra 2007 til 2012.</p>
+        <p>2. Legg merke til sydd lær, børstet aluminium og metallskruene i hjørnene.</p>
+        <p>3. Når du trykker på Play, begynner hjulene å spinne og nålene på VU-meteret slår i takt!</p>
+      </div>
+    </div>
+
+    <!-- SECTION: ANALOG AM/FM RADIO TUNER -->
+    <div style="margin-top: 40px; background: linear-gradient(180deg, #382414, #1f1207); border: 8px solid #140a04; border-radius: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.8); padding: 24px; color: #eeddc9;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #5a3c20; padding-bottom: 12px; margin-bottom: 20px;">
+        <h3 style="font-family: 'Cinzel', serif; font-size: 1.25rem;">TANDBERG SOLID STATE // AM/FM TUNER</h3>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; background: #000; color: #34d399; padding: 2px 8px; border-radius: 4px; border: 1px solid #333;">STEREO BEACON ON</span>
+      </div>
+
+      <!-- ANALOG RADIO FREQUENCY DIAL -->
+      <div style="background: #000; border: 3px solid #555; border-radius: 6px; padding: 18px 24px; position: relative; overflow: hidden; margin-bottom: 20px; box-shadow: inset 0 4px 12px #000;">
+        <div style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #e5a93c; border-bottom: 1px dashed #77551c; padding-bottom: 6px; margin-bottom: 10px;">
+          <span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span><span>MHz FM</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #8cb8ff;">
+          <span>540</span><span>700</span><span>900</span><span>1200</span><span>1600</span><span>kHz AM</span>
+        </div>
+        <!-- MOVING FREQUENCY NEEDLE -->
+        <div id="radioNeedle" style="position: absolute; top: 0; bottom: 0; left: 45%; width: 2px; background: #ff3333; box-shadow: 0 0 8px #ff3333; transition: left 0.3s ease;"></div>
+      </div>
+
+      <!-- RADIO STATION PRESETS -->
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn-skeuo" onclick="tuneRadio('89.5 MHz', '18%', 'Klassisk Musikk')">📻 89.5 Klassisk</button>
+        <button class="btn-skeuo" onclick="tuneRadio('98.3 MHz', '48%', 'NRK P1 Oslo')">📻 98.3 NRK P1</button>
+        <button class="btn-skeuo" onclick="tuneRadio('102.4 MHz', '72%', 'Jazz Radio')">📻 102.4 Jazz FM</button>
+        <button class="btn-skeuo" onclick="tuneRadio('106.8 MHz', '90%', 'Rock 106')">📻 106.8 Rock</button>
+      </div>
+    </div>
+
+    <!-- SECTION: VINTAGE ROLODEX ADDRESS BOOK -->
+    <div style="margin-top: 40px; background: #f4ebd9; border-radius: 10px; border: 4px solid #4a2c16; padding: 28px; color: #222; box-shadow: 0 15px 35px rgba(0,0,0,0.6);">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #8b6038; padding-bottom: 10px; margin-bottom: 20px;">
+        <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem;">SKINNINBUNDET ROLODEX // KONTAKTREGISTER</h3>
+        <span style="font-family: 'Georgia', serif; font-style: italic; color: #666;">Arkiv 1982</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        <div style="background: #fff; border: 1px solid #d4c5af; border-radius: 6px; padding: 18px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); position: relative; border-left: 6px solid #8b2500;" onclick="showSkeuoConfirm('Slår opp kontakt: Steve Jobs (Cupertino)')">
+          <span style="position: absolute; top: 10px; right: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; background: #eeddc9; padding: 2px 6px; border-radius: 3px;">KORT #01</span>
+          <h4 style="font-family: 'Georgia', serif; font-size: 1.15rem; margin-bottom: 4px;">Steve Jobs</h4>
+          <p style="font-size: 0.85rem; color: #555;">Apple Computer Inc. • 1 Infinite Loop</p>
+          <div style="margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #8b2500;">☎ +1 (408) 996-1010</div>
+        </div>
+
+        <div style="background: #fff; border: 1px solid #d4c5af; border-radius: 6px; padding: 18px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); position: relative; border-left: 6px solid #104e8b;" onclick="showSkeuoConfirm('Slår opp kontakt: Dieter Rams (Braun AG)')">
+          <span style="position: absolute; top: 10px; right: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; background: #eeddc9; padding: 2px 6px; border-radius: 3px;">KORT #02</span>
+          <h4 style="font-family: 'Georgia', serif; font-size: 1.15rem; margin-bottom: 4px;">Dieter Rams</h4>
+          <p style="font-size: 0.85rem; color: #555;">Braun Design Team • Kronberg</p>
+          <div style="margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #104e8b;">☎ +49 6173 30-0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const reelLeft = document.getElementById('reelLeft');
+    const reelRight = document.getElementById('reelRight');
+    const needleLeft = document.getElementById('needleLeft');
+    const needleRight = document.getElementById('needleRight');
+
+    let isTapeRunning = false;
+    let vuInterval = null;
+
+    function startTape() {
+      isTapeRunning = true;
+      reelLeft.classList.add('spinning');
+      reelRight.classList.add('spinning');
+
+      clearInterval(vuInterval);
+      vuInterval = setInterval(() => {
+        const leftDeg = Math.random() * 35 - 15;
+        const rightDeg = Math.random() * 35 - 15;
+        needleLeft.style.transform = `rotate(${leftDeg}deg)`;
+        needleRight.style.transform = `rotate(${rightDeg}deg)`;
+      }, 120);
+    }
+
+    function stopTape() {
+      isTapeRunning = false;
+      reelLeft.classList.remove('spinning');
+      reelRight.classList.remove('spinning');
+      clearInterval(vuInterval);
+      needleLeft.style.transform = 'rotate(-25deg)';
+      needleRight.style.transform = 'rotate(-25deg)';
+    }
+
+    // VINTAGE SKEUOMORPHIC CONFIRMATION
+    function showSkeuoConfirm(msg) {
+      let toast = document.getElementById('skeuoToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'skeuoToast';
+        toast.style.cssText = `
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          background: linear-gradient(180deg, #442a17, #26150a);
+          border: 3px solid #140903;
+          border-radius: 8px;
+          padding: 14px 22px;
+          color: #f7e6d2;
+          font-family: 'Cinzel', serif;
+          font-size: 0.85rem;
+          font-weight: 700;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 10px 25px rgba(0,0,0,0.8);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        `;
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<span style="width: 10px; height: 10px; border-radius: 50%; background: #ff3b30; box-shadow: 0 0 10px #ff3b30, inset 0 1px 1px #fff;"></span> ${msg}`;
+      toast.style.display = 'flex';
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => { toast.style.display = 'none'; }, 2800);
+    }
+
+    document.getElementById('btnPlay').addEventListener('click', () => {
+      startTape();
+      showSkeuoConfirm('▶ AVSSPILLING STARTET');
+    });
+    document.getElementById('btnStop').addEventListener('click', () => {
+      stopTape();
+      showSkeuoConfirm('⏹ BÅND STOPPET');
+    });
+    document.getElementById('btnPause').addEventListener('click', () => {
+      stopTape();
+      showSkeuoConfirm('⏸ PAUSE AKTIVERT');
+    });
+    document.getElementById('btnRewind').addEventListener('click', () => {
+      showSkeuoConfirm('⏪ SPOLET TILBAKE TIL START');
+    });
+    document.getElementById('btnRecord').addEventListener('click', () => {
+      startTape();
+      showSkeuoConfirm('⏺ OPPTAK AKTIVERT (STUDIO MASTER)');
+    });
+
+    window.tuneRadio = function(freq, posPercent, station) {
+      const needle = document.getElementById('radioNeedle');
+      if (needle) {
+        needle.style.left = posPercent;
+      }
+      showSkeuoConfirm(`📻 Tunet inn på ${station} (${freq})`);
+    };
+  </script>
+</body>
+</html>

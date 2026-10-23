@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MATERIAL DESIGN // TaskFlow Material 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* STYLE BAR */
+    .style-bar {
+      background: #ffffff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .style-bar-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #616161;
+      margin-right: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .style-link {
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #3c4043;
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: #f1f3f4;
+      transition: background 0.15s;
+    }
+    .style-link:hover {
+      background: #e8eaed;
+    }
+    .style-link.active {
+      background: #6750a4;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* MATERIAL 3 BASE */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Roboto', -apple-system, sans-serif;
+      background: #fef7ff;
+      color: #1d1b20;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    /* TOP APP BAR */
+    .m3-appbar {
+      background: #fef7ff;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 41px;
+      z-index: 900;
+    }
+    .m3-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #1d1b20;
+    }
+    .m3-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: background 0.2s;
+    }
+    .m3-icon-btn:hover {
+      background: rgba(103, 80, 164, 0.08);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      position: relative;
+    }
+
+    /* FILTER CHIPS (Material Chips) */
+    .chip-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .m3-chip {
+      background: transparent;
+      border: 1px solid #79747e;
+      border-radius: 8px;
+      padding: 6px 16px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #49454f;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .m3-chip.active {
+      background: #e8def8;
+      border-color: transparent;
+      color: #1d192b;
+      font-weight: 600;
+    }
+
+    /* MATERIAL ELEVATION CARDS */
+    .tasks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .m3-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 3px 1px rgba(0,0,0,0.15), 0 1px 2px 0 rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .m3-card:hover {
+      box-shadow: 0 2px 6px 2px rgba(0,0,0,0.15), 0 1px 2px 0 rgba(0,0,0,0.3);
+      transform: translateY(-1px);
+    }
+    .task-meta h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .task-meta p {
+      font-size: 0.85rem;
+      color: #49454f;
+    }
+    .m3-tag {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .tag-purple { background: #e8def8; color: #6750a4; }
+    .tag-blue { background: #d3e3fd; color: #0b57d0; }
+
+    /* DYNAMIC COLOR PALETTES */
+    :root {
+      --md-primary: #6750a4;
+      --md-primary-container: #e8def8;
+      --md-on-primary-container: #21005d;
+      --md-surface: #fef7ff;
+      --md-card-bg: #ffffff;
+      --md-outline: #79747e;
+    }
+
+    body {
+      background: var(--md-surface);
+      color: #1d1b20;
+      transition: background 0.3s ease;
+    }
+
+    .m3-layout {
+      display: flex;
+      min-height: calc(100vh - 90px);
+    }
+
+    /* NAVIGATION RAIL */
+    .m3-nav-rail {
+      width: 80px;
+      background: var(--md-surface);
+      border-right: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 0;
+      gap: 28px;
+      flex-shrink: 0;
+    }
+    .rail-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      color: #49454f;
+      font-size: 0.72rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .rail-item .rail-icon {
+      width: 56px;
+      height: 32px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .rail-item.active .rail-icon {
+      background: var(--md-primary-container);
+      color: var(--md-on-primary-container);
+    }
+    .rail-item.active {
+      color: var(--md-primary);
+      font-weight: 700;
+    }
+
+    /* MAIN CONTENT */
+    .m3-main {
+      flex: 1;
+      padding: 32px 36px;
+      max-width: 1050px;
+    }
+
+    /* SEED COLOR PICKER (MATERIAL YOU) */
+    .seed-picker-card {
+      background: var(--md-primary-container);
+      color: var(--md-on-primary-container);
+      border-radius: 24px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .seed-dots {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .seed-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .seed-dot:hover {
+      transform: scale(1.15);
+    }
+    .seed-dot.selected {
+      border-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transform: scale(1.1);
+    }
+
+    /* M3 CALENDAR CARD */
+    .m3-calendar-card {
+      background: var(--md-card-bg);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      margin-bottom: 32px;
+    }
+    .cal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+    .cal-day-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #79747e;
+      padding-bottom: 6px;
+    }
+    .cal-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cal-cell:hover:not(.empty) {
+      background: rgba(103, 80, 164, 0.1);
+    }
+    .cal-cell.today {
+      border: 1px solid var(--md-primary);
+      color: var(--md-primary);
+      font-weight: 700;
+    }
+    .cal-cell.active-day {
+      background: var(--md-primary) !important;
+      color: #ffffff !important;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STYLE BAR -->
+  <nav class="style-bar">
+    <span class="style-bar-title">UI Design:</span>
+    <a href="index.html" class="style-link">🥊 Neo-Brutalism</a>
+    <a href="bento.html" class="style-link">🍱 Bento Grid</a>
+    <a href="glass.html" class="style-link">🪟 Glassmorphism</a>
+    <a href="neumorphism.html" class="style-link">🪨 Neumorphism</a>
+    <a href="skeuomorphism.html" class="style-link">🪵 Skeuomorphism</a>
+    <a href="claymorphism.html" class="style-link">🧸 Claymorphism</a>
+    <a href="flat.html" class="style-link">📄 Flat Design</a>
+    <a href="material.html" class="style-link active">📐 Material Design</a>
+    <a href="minimalism.html" class="style-link">🏛️ Swiss Minimal</a>
+    <a href="cyberpunk.html" class="style-link">🕹️ Cyberpunk Y2K</a>
+    <a href="museum.html" class="style-link" style="margin-left: auto;">🏛️ Se Museum</a>
+  </nav>
+
+  <!-- APP BAR -->
+  <header class="m3-appbar">
+    <div class="m3-logo">
+      <button class="m3-icon-btn" onclick="showMaterialSnackbar('Hovedmeny åpnet (Navigation Drawer)')">☰</button>
+      <span>TaskFlow M3 • Material You</span>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button class="m3-icon-btn" onclick="showMaterialSnackbar('Søk i oppgaver')">🔍</button>
+      <button class="m3-icon-btn" onclick="showMaterialSnackbar('Brukerprofil: Kristian')">👤</button>
+    </div>
+  </header>
+
+  <div class="m3-layout">
+    <!-- NAVIGATION RAIL -->
+    <aside class="m3-nav-rail">
+      <div class="rail-item active" onclick="setRail(this, 'Oppgaver')">
+        <div class="rail-icon">📋</div>
+        <span>Oppgaver</span>
+      </div>
+      <div class="rail-item" onclick="setRail(this, 'Kalender')">
+        <div class="rail-icon">📅</div>
+        <span>Kalender</span>
+      </div>
+      <div class="rail-item" onclick="setRail(this, 'Fokus')">
+        <div class="rail-icon">⏱️</div>
+        <span>Fokus</span>
+      </div>
+      <div class="rail-item" onclick="setRail(this, 'Statistikk')">
+        <div class="rail-icon">📊</div>
+        <span>Statistikk</span>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="m3-main">
+      <!-- MATERIAL YOU SEED PALETTE -->
+      <div class="seed-picker-card">
+        <div>
+          <h3 style="font-size: 1.15rem; font-weight: 600; margin-bottom: 4px;">🎨 Material You Dynamic Theme</h3>
+          <p style="font-size: 0.88rem; opacity: 0.85;">Velg en kilde-farge (Seed Color). Hele grensesnittet genererer harmoniske nyanser automatisk.</p>
+        </div>
+        <div class="seed-dots">
+          <div class="seed-dot selected" style="background: #6750a4;" onclick="applySeed('#6750a4', '#e8def8', '#21005d', '#fef7ff', this)" title="Deep Purple"></div>
+          <div class="seed-dot" style="background: #006874;" onclick="applySeed('#006874', '#97f0ff', '#001f24', '#f4fbfa', this)" title="Ocean Teal"></div>
+          <div class="seed-dot" style="background: #984061;" onclick="applySeed('#984061', '#ffd9e2', '#3e001d', '#fff8f8', this)" title="Desert Rose"></div>
+          <div class="seed-dot" style="background: #3e6a00;" onclick="applySeed('#3e6a00', '#b8f470', '#102000', '#f7fbe9', this)" title="Forest Green"></div>
+          <div class="seed-dot" style="background: #a04000;" onclick="applySeed('#a04000', '#ffdbcc', '#351000', '#fff8f6', this)" title="Warm Ochre"></div>
+        </div>
+      </div>
+
+      <!-- CHIPS -->
+      <div class="chip-row">
+        <button class="m3-chip active">✓ Alle Oppgaver</button>
+        <button class="m3-chip">⭐ Prioritert</button>
+        <button class="m3-chip">📅 Forfaller i dag</button>
+        <button class="m3-chip">🏷️ Material Design 3</button>
+      </div>
+
+      <!-- GRID LAYOUT FOR TASKS & CALENDAR -->
+      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px;">
+        <!-- TASKS LIST -->
+        <div>
+          <h2 style="font-size: 1.3rem; font-weight: 500; margin-bottom: 16px;">Aktive Papirkort (Elevation 1)</h2>
+          <div class="tasks-list">
+            <div class="m3-card" onclick="cardClick(this)">
+              <div class="task-meta">
+                <h3>Ferdigstille Google Material Design side</h3>
+                <p>Implementere M3 dynamic color, FAB-knapp og heving.</p>
+              </div>
+              <span class="m3-tag" style="background: var(--md-primary-container); color: var(--md-on-primary-container);">Design System</span>
+            </div>
+
+            <div class="m3-card" onclick="cardClick(this)">
+              <div class="task-meta">
+                <h3>Kjør brukertest med Material You</h3>
+                <p>Sjekke kontrast og klikkbølger på berøringsskjerm.</p>
+              </div>
+              <span class="m3-tag" style="background: var(--md-primary-container); color: var(--md-on-primary-container);">UX Research</span>
+            </div>
+
+            <div class="m3-card" onclick="cardClick(this)">
+              <div class="task-meta">
+                <h3>Oppdater elevation-skygger</h3>
+                <p>Subtile skygger som definerer elementers høyde over lerretet.</p>
+              </div>
+              <span class="m3-tag" style="background: var(--md-primary-container); color: var(--md-on-primary-container);">Frontend</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- M3 CALENDAR -->
+        <div>
+          <h2 style="font-size: 1.3rem; font-weight: 500; margin-bottom: 16px;">M3 Kalenderoversikt</h2>
+          <div class="m3-calendar-card">
+            <div class="cal-header">
+              <span id="calMonth">September 2026</span>
+              <div style="display: flex; gap: 4px;">
+                <button class="m3-icon-btn" style="width: 32px; height: 32px;" onclick="showMaterialSnackbar('Forrige måned')">◀</button>
+                <button class="m3-icon-btn" style="width: 32px; height: 32px;" onclick="showMaterialSnackbar('Neste måned')">▶</button>
+              </div>
+            </div>
+            <div class="cal-grid">
+              <div class="cal-day-name">MA</div><div class="cal-day-name">TI</div><div class="cal-day-name">ON</div>
+              <div class="cal-day-name">TO</div><div class="cal-day-name">FR</div><div class="cal-day-name">LØ</div><div class="cal-day-name">SØ</div>
+
+              <div class="cal-cell empty"></div><div class="cal-cell" onclick="selectDay(this, 1)">1</div>
+              <div class="cal-cell" onclick="selectDay(this, 2)">2</div><div class="cal-cell" onclick="selectDay(this, 3)">3</div>
+              <div class="cal-cell" onclick="selectDay(this, 4)">4</div><div class="cal-cell" onclick="selectDay(this, 5)">5</div>
+              <div class="cal-cell" onclick="selectDay(this, 6)">6</div><div class="cal-cell" onclick="selectDay(this, 7)">7</div>
+              <div class="cal-cell" onclick="selectDay(this, 8)">8</div><div class="cal-cell" onclick="selectDay(this, 9)">9</div>
+              <div class="cal-cell" onclick="selectDay(this, 10)">10</div><div class="cal-cell" onclick="selectDay(this, 11)">11</div>
+              <div class="cal-cell" onclick="selectDay(this, 12)">12</div><div class="cal-cell" onclick="selectDay(this, 13)">13</div>
+              <div class="cal-cell" onclick="selectDay(this, 14)">14</div><div class="cal-cell" onclick="selectDay(this, 15)">15</div>
+              <div class="cal-cell today active-day" onclick="selectDay(this, 16)">16</div>
+              <div class="cal-cell" onclick="selectDay(this, 17)">17</div><div class="cal-cell" onclick="selectDay(this, 18)">18</div>
+              <div class="cal-cell" onclick="selectDay(this, 19)">19</div><div class="cal-cell" onclick="selectDay(this, 20)">20</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- FLOATING ACTION BUTTON (FAB) -->
+  <button class="m3-fab" id="fabBtn" title="Opprett ny oppgave" style="background: var(--md-primary-container); color: var(--md-on-primary-container);">+</button>
+
+  <!-- MATERIAL 3 SNACKBAR -->
+  <div id="m3Snackbar" style="position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%) translateY(120px); background: #313033; color: #f4eff4; padding: 14px 24px; border-radius: 8px; box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14); display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 0.9rem; z-index: 1100; transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1); min-width: 340px;">
+    <span id="snackbarText">Handling bekreftet</span>
+    <button onclick="hideSnackbar()" style="background: none; border: none; color: #d0bcff; font-weight: 700; cursor: pointer; text-transform: uppercase;">LUKK</button>
+  </div>
+
+  <script>
+    const snackbar = document.getElementById('m3Snackbar');
+    const snackbarText = document.getElementById('snackbarText');
+    let snackTimer = null;
+
+    function showMaterialSnackbar(msg) {
+      snackbarText.textContent = msg;
+      snackbar.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(snackTimer);
+      snackTimer = setTimeout(hideSnackbar, 3000);
+    }
+
+    function hideSnackbar() {
+      snackbar.style.transform = 'translateX(-50%) translateY(120px)';
+    }
+
+    document.getElementById('fabBtn').addEventListener('click', () => {
+      showMaterialSnackbar('📐 Ny oppgave opprettet med Material 3 FAB!');
+    });
+
+    function cardClick(card) {
+      const title = card.querySelector('h3').textContent;
+      showMaterialSnackbar(`✓ Valgte oppgave: "${title}"`);
+    }
+
+    document.querySelectorAll('.m3-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.m3-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        showMaterialSnackbar(`Filter aktivert: ${chip.textContent.trim()}`);
+      });
+    });
+
+    function setRail(el, name) {
+      document.querySelectorAll('.rail-item').forEach(r => r.classList.remove('active'));
+      el.classList.add('active');
+      showMaterialSnackbar(`Byttet seksjon: ${name}`);
+    }
+
+    function applySeed(primary, primaryContainer, onPrimaryContainer, surface, dotEl) {
+      document.documentElement.style.setProperty('--md-primary', primary);
+      document.documentElement.style.setProperty('--md-primary-container', primaryContainer);
+      document.documentElement.style.setProperty('--md-on-primary-container', onPrimaryContainer);
+      document.documentElement.style.setProperty('--md-surface', surface);
+
+      document.querySelectorAll('.seed-dot').forEach(d => d.classList.remove('selected'));
+      if (dotEl) dotEl.classList.add('selected');
+
+      showMaterialSnackbar(`🎨 Material You palett oppdatert (${dotEl ? dotEl.title : 'Ny'})`);
+    }
+
+    function selectDay(cell, day) {
+      document.querySelectorAll('.cal-cell').forEach(c => c.classList.remove('active-day'));
+      cell.classList.add('active-day');
+      showMaterialSnackbar(`📅 Valgte ${day}. september 2026 i kalenderen`);
+    }
+  </script>
+</body>
+</html>

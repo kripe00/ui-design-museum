@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYBERPUNK // Netrunner 2077 Terminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* STYLE BAR */
+    .style-bar {
+      background: #05080e;
+      border-bottom: 1px solid #00f3ff;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .style-bar-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #00f3ff;
+      margin-right: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .style-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #79a6c7;
+      text-decoration: none;
+      padding: 4px 10px;
+      border: 1px solid #1a3249;
+      background: #09121d;
+      transition: all 0.2s;
+    }
+    .style-link:hover {
+      border-color: #00f3ff;
+      color: #00f3ff;
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+    }
+    .style-link.active {
+      background: #ff0055;
+      color: #ffffff;
+      border-color: #ff0055;
+      box-shadow: 0 0 12px rgba(255, 0, 85, 0.6);
+    }
+
+    /* CYBERPUNK BASE */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: #04060a;
+      color: #00f3ff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 80px;
+    }
+
+    /* CRT SCANLINE EFFECT */
+    body::before {
+      content: " ";
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      z-index: 999;
+      background-size: 100% 3px, 3px 100%;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* HEADER */
+    .cyber-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #00f3ff;
+      padding-bottom: 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0, 243, 255, 0.15);
+    }
+    .cyber-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff;
+      letter-spacing: 2px;
+    }
+    .cyber-logo span { color: #ff0055; text-shadow: 0 0 10px #ff0055; }
+    .status-badge {
+      border: 1px solid #ff0055;
+      background: rgba(255, 0, 85, 0.1);
+      color: #ff0055;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      box-shadow: 0 0 10px rgba(255, 0, 85, 0.3);
+    }
+
+    /* CYBER HUD CARD (ANGLED CORNERS VIA CLIP-PATH) */
+    .cyber-card {
+      background: rgba(8, 13, 22, 0.85);
+      border: 1px solid #00f3ff;
+      padding: 28px;
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.2);
+      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+      position: relative;
+      margin-bottom: 30px;
+    }
+    .cyber-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0; width: 40px; height: 3px;
+      background: #ff0055;
+      box-shadow: 0 0 8px #ff0055;
+    }
+
+    /* GRID */
+    .cyber-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    /* GLITCH HEADING */
+    .glitch-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 2px 2px 0 #ff0055, -2px -2px 0 #00f3ff;
+      margin-bottom: 14px;
+    }
+
+    .terminal-output {
+      background: #020305;
+      border: 1px solid #00f3ff;
+      border-radius: 4px;
+      padding: 16px;
+      height: 180px;
+      overflow-y: auto;
+      font-size: 0.85rem;
+      color: #00ff66;
+      margin-bottom: 20px;
+      box-shadow: inset 0 0 15px rgba(0, 255, 102, 0.2);
+    }
+
+    /* CYBER BUTTONS */
+    .btn-cyber {
+      background: #ff0055;
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border: 1px solid #ff0055;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+      transition: all 0.2s;
+    }
+    .btn-cyber:hover {
+      background: #00f3ff;
+      border-color: #00f3ff;
+      color: #000;
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.8);
+    }
+
+    .btn-cyber-outline {
+      background: transparent;
+      color: #00f3ff;
+      border: 1px solid #00f3ff;
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+    }
+    .btn-cyber-outline:hover {
+      background: #00f3ff;
+      color: #000;
+    }
+
+    /* BREACH PROTOCOL MATRIX */
+    .breach-box {
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px dashed rgba(0, 243, 255, 0.4);
+    }
+    .breach-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 52px);
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .breach-cell {
+      width: 52px;
+      height: 52px;
+      border: 1px solid #1a3249;
+      background: #09121d;
+      color: #00f3ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .breach-cell:hover {
+      border-color: #ff0055;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+    }
+    .breach-cell.selected {
+      background: #ff0055;
+      color: #fff;
+      border-color: #ff0055;
+      box-shadow: 0 0 14px rgba(255, 0, 85, 0.8);
+      pointer-events: none;
+    }
+    .buffer-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .buffer-slot {
+      width: 42px;
+      height: 42px;
+      border: 1px dashed #00f3ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      color: #00ff66;
+    }
+
+    /* AUDIO SYNTH KEYS */
+    .synth-keys {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .synth-key {
+      flex: 1;
+      padding: 12px 6px;
+      background: #07101a;
+      border: 1px solid #00f3ff;
+      color: #00f3ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.1s;
+    }
+    .synth-key:hover, .synth-key:active {
+      background: #00f3ff;
+      color: #000;
+      box-shadow: 0 0 12px #00f3ff;
+    }
+
+    /* STAT MODULES */
+    .stat-module {
+      border-bottom: 1px dashed rgba(0, 243, 255, 0.3);
+      padding: 14px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .stat-val {
+      color: #ff0055;
+      font-weight: 800;
+    }
+
+    @media (max-width: 800px) {
+      .cyber-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STYLE BAR -->
+  <nav class="style-bar">
+    <span class="style-bar-title">UI Design:</span>
+    <a href="index.html" class="style-link">🥊 Neo-Brutalism</a>
+    <a href="bento.html" class="style-link">🍱 Bento Grid</a>
+    <a href="glass.html" class="style-link">🪟 Glassmorphism</a>
+    <a href="neumorphism.html" class="style-link">🪨 Neumorphism</a>
+    <a href="skeuomorphism.html" class="style-link">🪵 Skeuomorphism</a>
+    <a href="claymorphism.html" class="style-link">🧸 Claymorphism</a>
+    <a href="flat.html" class="style-link">📄 Flat Design</a>
+    <a href="material.html" class="style-link">📐 Material Design</a>
+    <a href="minimalism.html" class="style-link">🏛️ Swiss Minimal</a>
+    <a href="cyberpunk.html" class="style-link active">🕹️ Cyberpunk Y2K</a>
+    <a href="museum.html" class="style-link" style="margin-left: auto;">🏛️ Se Museum</a>
+  </nav>
+
+  <div class="container">
+    <header class="cyber-header">
+      <div class="cyber-logo">NETRUNNER<span>.2077</span></div>
+      <div class="status-badge">SEC_LEVEL // OMEGA</div>
+    </header>
+
+    <div class="cyber-grid">
+      <!-- MAIN TERMINAL CARD -->
+      <div class="cyber-card">
+        <h1 class="glitch-title">NEURAL_DECK_V4</h1>
+        <p style="color: #79a6c7; margin-bottom: 20px;">
+          Initialiserer taktisk grensesnitt. Skanninger viser aktive datastrømmer gjennom Night City grid.
+        </p>
+
+        <div class="terminal-output" id="terminalBox">
+          <div>[SYSTEM] Kjerne online. Scanlines aktivert.</div>
+          <div>[NET] Kobler til Arasaka sub-nettverk... OK (12ms)</div>
+          <div>[BUFFER] ICE-breaker firmware 2.4.0 klar.</div>
+          <div>[READY] Venter på bruker-kommando...</div>
+        </div>
+
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px;">
+          <button class="btn-cyber" id="breachBtn">BRYT PROTOKOLL ⚡</button>
+          <button class="btn-cyber btn-cyber-outline" id="pingBtn">PING DATASTRØM</button>
+        </div>
+
+        <!-- BREACH PROTOCOL MINI-GAME -->
+        <div class="breach-box">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.05rem; color: #ff0055;">// BREACH PROTOCOL HACK</h3>
+            <span style="font-size: 0.8rem; color: #79a6c7;">SEKVENS: <strong style="color: #00ff66;">1C ➔ 55 ➔ BD</strong></span>
+          </div>
+
+          <div class="buffer-row" style="margin-top: 12px;">
+            <span style="font-size: 0.8rem; color: #aaa; margin-right: 8px;">BUFFER:</span>
+            <div class="buffer-slot" id="buf0">--</div>
+            <div class="buffer-slot" id="buf1">--</div>
+            <div class="buffer-slot" id="buf2">--</div>
+            <button class="btn-cyber btn-cyber-outline" style="padding: 6px 12px; font-size: 0.7rem; margin-left: auto;" onclick="resetBreach()">RESET</button>
+          </div>
+
+          <div class="breach-grid">
+            <div class="breach-cell" onclick="pressHex(this, '1C')">1C</div>
+            <div class="breach-cell" onclick="pressHex(this, 'E9')">E9</div>
+            <div class="breach-cell" onclick="pressHex(this, '55')">55</div>
+            <div class="breach-cell" onclick="pressHex(this, '7A')">7A</div>
+            <div class="breach-cell" onclick="pressHex(this, 'BD')">BD</div>
+            <div class="breach-cell" onclick="pressHex(this, '1C')">1C</div>
+            <div class="breach-cell" onclick="pressHex(this, 'E9')">E9</div>
+            <div class="breach-cell" onclick="pressHex(this, 'BD')">BD</div>
+            <div class="breach-cell" onclick="pressHex(this, '55')">55</div>
+            <div class="breach-cell" onclick="pressHex(this, '7A')">7A</div>
+            <div class="breach-cell" onclick="pressHex(this, '1C')">1C</div>
+            <div class="breach-cell" onclick="pressHex(this, '55')">55</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR STATUS -->
+      <div>
+        <div class="cyber-card">
+          <h3 style="font-family: 'Orbitron', sans-serif; margin-bottom: 16px; color: #fff;">HUD_METRICS</h3>
+          
+          <div class="stat-module">
+            <span>RAM Bruk</span>
+            <span class="stat-val">84.2%</span>
+          </div>
+
+          <div class="stat-module">
+            <span>Cybersikkerhet</span>
+            <span class="stat-val" style="color: #00ff66;">AKTIV</span>
+          </div>
+
+          <div class="stat-module">
+            <span>Neural Latency</span>
+            <span class="stat-val">3 ms</span>
+          </div>
+
+          <div class="stat-module">
+            <span>Overclock Temp</span>
+            <span class="stat-val">68° C</span>
+          </div>
+        </div>
+
+        <!-- SYNTH KEYBOARD MODULE -->
+        <div class="cyber-card">
+          <h3 style="font-family: 'Orbitron', sans-serif; margin-bottom: 10px; color: #fff; font-size: 0.95rem;">SYNTH_FREQ GENERATOR</h3>
+          <p style="font-size: 0.78rem; color: #79a6c7; margin-bottom: 8px;">Spill av 8-bit cyber-akkorder i sanntid:</p>
+          <div class="synth-keys">
+            <div class="synth-key" onclick="beep(220, 0.2); logSynth('A3 220Hz')">A3</div>
+            <div class="synth-key" onclick="beep(293.66, 0.2); logSynth('D4 293Hz')">D4</div>
+            <div class="synth-key" onclick="beep(349.23, 0.2); logSynth('F4 349Hz')">F4</div>
+            <div class="synth-key" onclick="beep(440, 0.2); logSynth('A4 440Hz')">A4</div>
+            <div class="synth-key" onclick="beep(587.33, 0.2); logSynth('D5 587Hz')">D5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cyberToast" style="position: fixed; bottom: 30px; right: 30px; background: rgba(5, 8, 14, 0.95); border: 1px solid #ff0055; color: #ff0055; padding: 14px 22px; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; font-weight: 700; box-shadow: 0 0 20px rgba(255, 0, 85, 0.6); display: none; z-index: 10000;"></div>
+
+  <script>
+    const term = document.getElementById('terminalBox');
+    const cyberToast = document.getElementById('cyberToast');
+    
+    function showCyberAlert(msg) {
+      cyberToast.textContent = msg;
+      cyberToast.style.display = 'block';
+      clearTimeout(cyberToast._timer);
+      cyberToast._timer = setTimeout(() => cyberToast.style.display = 'none', 2800);
+    }
+
+    // Synth beep
+    function beep(freq = 600, duration = 0.06) {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    function logSynth(note) {
+      const line = document.createElement('div');
+      line.textContent = `[SYNTH] Output oscillator: ${note}`;
+      line.style.color = '#00f3ff';
+      term.appendChild(line);
+      term.scrollTop = term.scrollHeight;
+    }
+
+    document.getElementById('breachBtn').addEventListener('click', () => {
+      beep(880, 0.1);
+      setTimeout(() => beep(1200, 0.15), 100);
+      const line = document.createElement('div');
+      line.textContent = `[${new Date().toLocaleTimeString()}] BREACH PROTOCOL INITIALISERT // Tilgang innvilget! 💥`;
+      line.style.color = '#ff0055';
+      term.appendChild(line);
+      term.scrollTop = term.scrollHeight;
+      showCyberAlert('💥 BREACH PROTOCOL INITIALISERT!');
+    });
+
+    document.getElementById('pingBtn').addEventListener('click', () => {
+      beep(440, 0.05);
+      const line = document.createElement('div');
+      line.textContent = `[PING] Node reply fra Sub-Net 192.168.0.77: TTL=64 time=2.1ms`;
+      line.style.color = '#00f3ff';
+      term.appendChild(line);
+      term.scrollTop = term.scrollHeight;
+      showCyberAlert('📡 PING: 2.1ms TIL NIGHT CITY GRID');
+    });
+
+    // BREACH LOGIC
+    let buffer = [];
+    const targetSequence = ['1C', '55', 'BD'];
+
+    function pressHex(cell, val) {
+      if (buffer.length >= 3) return;
+      beep(600 + buffer.length * 150, 0.08);
+      cell.classList.add('selected');
+      buffer.push(val);
+      document.getElementById('buf' + (buffer.length - 1)).textContent = val;
+
+      if (buffer.length === 3) {
+        if (buffer[0] === targetSequence[0] && buffer[1] === targetSequence[1] && buffer[2] === targetSequence[2]) {
+          beep(1000, 0.2);
+          setTimeout(() => beep(1500, 0.3), 150);
+          showCyberAlert('🏆 DATAMINE SUKSESS! BONUS OVERFØRT!');
+          const line = document.createElement('div');
+          line.textContent = `[HACK SUCCESS] Arasaka ICE brutt fullstendig! 1000 E$ kreditert.`;
+          line.style.color = '#00ff66';
+          term.appendChild(line);
+        } else {
+          beep(200, 0.3);
+          showCyberAlert('⚠️ FEIL SEKVENS // ICE LOCKDOWN!');
+          const line = document.createElement('div');
+          line.textContent = `[HACK FAILED] Ugyldig sekvens: ${buffer.join(' ')}.`;
+          line.style.color = '#ff0055';
+          term.appendChild(line);
+        }
+        term.scrollTop = term.scrollHeight;
+      }
+    }
+
+    function resetBreach() {
+      buffer = [];
+      document.querySelectorAll('.breach-cell').forEach(c => c.classList.remove('selected'));
+      for (let i = 0; i < 3; i++) {
+        document.getElementById('buf' + i).textContent = '--';
+      }
+      showCyberAlert('🔄 HACK BUFFER NULLSTILT');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEO-BRUTALISM // UI Showroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP MULTI-STYLE NAVIGATOR (COMMON TO ALL 10 STYLES) -->
+  <nav class="style-bar">
+    <span class="style-bar-title">UI Design:</span>
+    <a href="index.html" class="style-link active">🥊 Neo-Brutalism</a>
+    <a href="bento.html" class="style-link">🍱 Bento Grid</a>
+    <a href="glass.html" class="style-link">🪟 Glassmorphism</a>
+    <a href="neumorphism.html" class="style-link">🪨 Neumorphism</a>
+    <a href="skeuomorphism.html" class="style-link">🪵 Skeuomorphism</a>
+    <a href="claymorphism.html" class="style-link">🧸 Claymorphism</a>
+    <a href="flat.html" class="style-link">📄 Flat Design</a>
+    <a href="material.html" class="style-link">📐 Material Design</a>
+    <a href="minimalism.html" class="style-link">🏛️ Swiss Minimal</a>
+    <a href="cyberpunk.html" class="style-link">🕹️ Cyberpunk Y2K</a>
+    <a href="museum.html" class="style-link" style="margin-left: auto;">🏛️ Se Museum</a>
+  </nav>
+
+  <!-- TOP TICKER / MARQUEE -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span class="ticker-item">⚡ 100% RAW NEO-BRUTALISM</span>
+      <span class="ticker-item">💥 BOLD BORDERS & HARD SHADOWS</span>
+      <span class="ticker-item">🎨 HIGH CONTRAST & SATURATED COLORS</span>
+      <span class="ticker-item">🕹️ TACTILE MICRO-INTERACTIONS</span>
+      <span class="ticker-item">🚀 ZERO GENERIC GRADIENTS</span>
+      <span class="ticker-item">⚡ 100% RAW NEO-BRUTALISM</span>
+      <span class="ticker-item">💥 BOLD BORDERS & HARD SHADOWS</span>
+      <span class="ticker-item">🎨 HIGH CONTRAST & SATURATED COLORS</span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <span class="brand-badge">BETA</span>
+        <h1 class="brand-title">BRUTAL<span class="brand-dot">.UI</span></h1>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#playground" class="nav-link">Komponenter</a>
+        <a href="#styler" class="nav-link">Neo-Styler</a>
+        <a href="#cards" class="nav-link">Kort & Layout</a>
+        <a href="#about" class="nav-link">Hvorfor Neo?</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="museum.html" class="btn btn-sm btn-purple" title="Se alle 10 designstiler">
+          🏛️ 10 Designstiler
+        </a>
+        <a href="bento.html" class="btn btn-sm btn-cyan" title="Se Bento Grid UI design">
+          🍱 Bento Grid
+        </a>
+        <button id="soundToggle" class="btn btn-sm btn-outline" title="Skru på/av retro lydeffekter">
+          <span id="soundIcon">🔊</span> Lyd: <span id="soundStatus">PÅ</span>
+        </button>
+        <button id="themeToggle" class="btn btn-sm btn-yellow">
+          🎨 Bytt Palett
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="sticker-wrapper">
+            <span class="sticker sticker-purple">★ TRENDY 2026</span>
+            <span class="sticker sticker-pink">NY DESIGNRETNING</span>
+          </div>
+
+          <h2 class="hero-heading">
+            DESIGN SOM <mark class="highlight-yellow">IKKE BER OM UNNSKYLDNING</mark> FOR AT DET FINNES.
+          </h2>
+
+          <p class="hero-lead">
+            Neo-brutalism kaster vekk de kjedelige, sterile gradientene og usynlige skyggene. 
+            Her får du <strong>kraftige kontraster</strong>, <strong>harde skygger</strong>, <strong>fete skrifttyper</strong> 
+            og et taktilt grensesnitt du faktisk har lyst til å trykke på.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#playground" class="btn btn-lg btn-yellow btn-shadow-lg">
+              Utforsk komponenter 👇
+            </a>
+            <button id="heroDemoModalBtn" class="btn btn-lg btn-white">
+              Åpne Brutal Modal 💥
+            </button>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <div class="stat-number">4px+</div>
+              <div class="stat-label">Sorte kanter</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">0%</div>
+              <div class="stat-label">Blur på skygger</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Taktil glede</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="interactive-preview-card">
+            <div class="card-header-bar">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+              <span class="card-header-title">preview_window.exe</span>
+            </div>
+            
+            <div class="preview-inner">
+              <div class="stamp stamp-urgent">TEST DET SELV!</div>
+              <h3>Trykk på elementene nedenfor</h3>
+              <p>Hvert element reagerer med taktil dybde og respons:</p>
+
+              <div class="preview-actions">
+                <button class="btn btn-primary preview-click-target">Klikk meg hardt!</button>
+                <button class="btn btn-mint preview-click-target">Eller meg!</button>
+              </div>
+
+              <div class="click-counter-box">
+                <span>Antall brutale klikk:</span>
+                <span id="clickCountBadge" class="badge badge-lg badge-pink">0</span>
+              </div>
+
+              <div class="tag-cloud">
+                <span class="tag">#neobrutalism</span>
+                <span class="tag">#retroUI</span>
+                <span class="tag">#webdesign</span>
+                <span class="tag">#bold</span>
+                <span class="tag">#fun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE NEO-STYLER TOOLBAR -->
+    <section id="styler" class="section styler-section">
+      <div class="container">
+        <div class="section-badge">INTERAKTIV KONTROLL</div>
+        <h2 class="section-title">🎛️ Neo-Styler: Juster designet i sanntid</h2>
+        <p class="section-desc">
+          Bruk kontrollene her for å se hvordan nettsiden endrer seg når du justerer skyggedybde, kanttykkelse og hjørneradius.
+        </p>
+
+        <div class="styler-box">
+          <div class="styler-control">
+            <label for="shadowSlider">Skyggedybde: <span id="shadowVal" class="val-pill">5px</span></label>
+            <input type="range" id="shadowSlider" min="0" max="14" value="5" step="1">
+          </div>
+
+          <div class="styler-control">
+            <label for="borderSlider">Kanttykkelse: <span id="borderVal" class="val-pill">3px</span></label>
+            <input type="range" id="borderSlider" min="1" max="6" value="3" step="1">
+          </div>
+
+          <div class="styler-control">
+            <label for="radiusSlider">Avrundede hjørner: <span id="radiusVal" class="val-pill">8px</span></label>
+            <input type="range" id="radiusSlider" min="0" max="24" value="8" step="2">
+          </div>
+
+          <div class="styler-control">
+            <label>Fargepalett:</label>
+            <div class="palette-picker">
+              <button class="palette-swatch swatch-cyber active" data-palette="cyber" title="Cyberpunk Gul"></button>
+              <button class="palette-swatch swatch-bubblegum" data-palette="bubblegum" title="Bubblegum Rosa"></button>
+              <button class="palette-swatch swatch-mint" data-palette="mint" title="Neo Mint"></button>
+              <button class="palette-swatch swatch-lavender" data-palette="lavender" title="Electric Lavender"></button>
+              <button class="palette-swatch swatch-mono" data-palette="mono" title="High Contrast Mono"></button>
+            </div>
+          </div>
+
+          <div class="styler-reset">
+            <button id="resetStylerBtn" class="btn btn-outline">Tilbakestill standard</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENT PLAYGROUND -->
+    <section id="playground" class="section playground-section">
+      <div class="container">
+        <div class="section-badge">KOMPONENTGALLERI</div>
+        <h2 class="section-title">🧱 Byggeklossene i Neo-Brutalism</h2>
+        <p class="section-desc">
+          Se hvordan klassiske UI-elementer transformeres til levende, taktile komponenter.
+        </p>
+
+        <!-- BUTTONS MATRIX -->
+        <div class="showcase-card">
+          <div class="showcase-header">
+            <h3>1. Knapper & Handlinger (Taktil hover & press)</h3>
+            <span class="code-tag">&lt;button class="btn"&gt;</span>
+          </div>
+          <div class="button-matrix">
+            <button class="btn btn-yellow">Primary Action</button>
+            <button class="btn btn-pink">Destructive / Hot</button>
+            <button class="btn btn-mint">Success State</button>
+            <button class="btn btn-purple">Electric Violet</button>
+            <button class="btn btn-cyan">Sky Blue</button>
+            <button class="btn btn-white">Classic White</button>
+            <button class="btn btn-outline">Minimal Outline</button>
+            <button class="btn btn-disabled" disabled>Disabled State</button>
+          </div>
+        </div>
+
+        <!-- FORM CONTROLS -->
+        <div class="showcase-card">
+          <div class="showcase-header">
+            <h3>2. Skjemaer & Inndata</h3>
+            <span class="code-tag">Inputs, Toggles & Checkboxes</span>
+          </div>
+          <div class="form-showcase-grid">
+            <div class="form-group">
+              <label class="form-label" for="sampleInput">Tekstfelt med brutal fokus</label>
+              <input type="text" id="sampleInput" class="brutal-input" placeholder="Skriv inn noe kult her...">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="sampleSelect">Velg kategori</label>
+              <select id="sampleSelect" class="brutal-select">
+                <option>🎨 Frontend Design</option>
+                <option>⚡ Lynrask Kode</option>
+                <option>🕹️ Retro Spill</option>
+                <option>💾 90s Nostalgi</option>
+              </select>
+            </div>
+
+            <div class="form-group inline-checkboxes">
+              <span class="form-label">Valg & Avkryssing</span>
+              <label class="brutal-checkbox-label">
+                <input type="checkbox" class="brutal-checkbox" checked>
+                <span>Harde skygger</span>
+              </label>
+              <label class="brutal-checkbox-label">
+                <input type="checkbox" class="brutal-checkbox" checked>
+                <span>Mettede farger</span>
+              </label>
+              <label class="brutal-checkbox-label">
+                <input type="checkbox" class="brutal-checkbox">
+                <span>Ingen subtile gradients</span>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <span class="form-label">Brutalistisk Toggle Switch</span>
+              <div class="toggle-wrapper">
+                <label class="brutal-switch">
+                  <input type="checkbox" id="featureSwitch" checked>
+                  <span class="slider"></span>
+                </label>
+                <span id="switchStateText" class="switch-label">Modus: <strong>SUPER BRUTAL</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BADGES & CHIPS -->
+        <div class="showcase-card">
+          <div class="showcase-header">
+            <h3>3. Badges, Merkelapper & Klistremerker</h3>
+            <span class="code-tag">&lt;span class="badge"&gt;</span>
+          </div>
+          <div class="badges-row">
+            <span class="badge badge-yellow">NEO-2026</span>
+            <span class="badge badge-pink">★ TOPPVALG</span>
+            <span class="badge badge-mint">TILGJENGELIG</span>
+            <span class="badge badge-purple">PRO FEATURE</span>
+            <span class="badge badge-cyan">OPPDATERT</span>
+            <span class="badge badge-outline">KODELINJER: 450</span>
+            <span class="sticker sticker-inline sticker-rotate-left">KLISTREMERKE ✌️</span>
+            <span class="sticker sticker-inline sticker-rotate-right">IKKE GLIPP DETTE 🔥</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CARDS & LAYOUTS -->
+    <section id="cards" class="section cards-section">
+      <div class="container">
+        <div class="section-badge">PRAKTISK BRUK</div>
+        <h2 class="section-title">🃏 Kort, Produkter & Dashboards</h2>
+        <p class="section-desc">
+          Hvordan seksjoner og innholdskort ser ut i et ekte produkt eller portefølje.
+        </p>
+
+        <div class="cards-grid">
+          <!-- CARD 1: PRODUCT CARD -->
+          <div class="card card-interactive">
+            <div class="card-badge-floating badge-yellow">MEGET POPULÆR</div>
+            <div class="card-img-placeholder bg-pink">
+              <span class="placeholder-emoji">🛹</span>
+            </div>
+            <div class="card-body">
+              <div class="card-category">STIL & GEAR</div>
+              <h3 class="card-title">Retro Brutal Skateboard</h3>
+              <p class="card-text">
+                Laget av kanadisk lønn med fete håndtegnede neo-grafikker og neon-hjul.
+              </p>
+              <div class="card-footer">
+                <span class="price-tag">kr 1 499,-</span>
+                <button class="btn btn-sm btn-yellow buy-btn" data-product="Retro Skateboard">Kjøp nå</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: PROFILE / PERSON CARD -->
+          <div class="card card-interactive">
+            <div class="card-badge-floating badge-mint">SPEAKER</div>
+            <div class="card-img-placeholder bg-yellow">
+              <span class="placeholder-emoji">👩‍💻</span>
+            </div>
+            <div class="card-body">
+              <div class="card-category">LEAD DESIGNER</div>
+              <h3 class="card-title">Astrid Lind</h3>
+              <p class="card-text">
+                Spesialist på radikal typografi, taktile grensesnitt og brutalistisk webkunst.
+              </p>
+              <div class="profile-meta">
+                <span class="meta-pill">📍 Oslo</span>
+                <span class="meta-pill">⚡ 48 Prosjekter</span>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-white follow-btn">Følg profil</button>
+                <button class="btn btn-sm btn-outline">Send melding</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: KANBAN TASK CARD -->
+          <div class="card card-interactive">
+            <div class="card-badge-floating badge-purple">I ARBEID</div>
+            <div class="card-img-placeholder bg-cyan">
+              <span class="placeholder-emoji">🚀</span>
+            </div>
+            <div class="card-body">
+              <div class="card-category">SPRINT #14</div>
+              <h3 class="card-title">Lansere Neo-Brutal UI</h3>
+              <p class="card-text">
+                Fullføre interaktiv nettside, teste på mobil og klargjøre komponentbiblioteket.
+              </p>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" style="width: 80%;"></div>
+              </div>
+              <div class="card-footer">
+                <span class="task-date">Frist: I dag</span>
+                <span class="badge badge-sm badge-pink">Høy prioritet</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCORDION & FAQ SECTION -->
+    <section id="about" class="section faq-section">
+      <div class="container faq-container">
+        <div class="section-badge">LÆR MER</div>
+        <h2 class="section-title">❓ Vanlige spørsmål om Neo-Brutalism</h2>
+
+        <div class="accordion">
+          <div class="accordion-item active">
+            <button class="accordion-header">
+              <span>Hva er forskjellen på Brutalism og Neo-Brutalism?</span>
+              <span class="accordion-icon">−</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Klassisk web-brutalisme oppstod som en reaksjon på pyntet webdesign og brukte rå, ubehandlet HTML med blå lenker, uformaterte tabeller og null hensyn til behagelig UX. 
+                <strong>Neo-Brutalism</strong> tar estetikken (fete linjer, rå kontraster, direkte former), men kombinerer det med <em>høy brukervennlighet</em>, moderne farger, leken mikromoro og responsivt design.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>Hvorfor har stilen blitt så populær nå?</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Etter ti år med sterile "corporate" gradienter og usynlige lysegrå bokser, skilte plutselig Figma, Gumroad, Spotify og innovative startups seg ut ved å bruke dristige, personlige og taktile grensesnitt som brukerne husker.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>Er Neo-Brutalism universelt utformet (tilgjengelig)?</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Ja! Faktisk er Neo-Brutalism en drøm for tilgjengelighet når det gjøres riktig, fordi kontrastforholdet mellom sorte kanter/tekst og mettede bakgrunnsfarger ofte overgår WCAG AAA-kravene (ofte over 10:1 til 21:1 kontrast).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: INTERACTIVE STICKER PAD -->
+    <section class="section sticker-pad-section" style="background: #fff0f5;">
+      <div class="container">
+        <div class="section-badge">LEK & MORO</div>
+        <h2 class="section-title">🎨 Interaktiv Klistremerkeblokk</h2>
+        <p class="section-desc">
+          Klikk på klistremerkene eller klikk hvor som helst inne i boksen for å stemple dine egne Neo-stickers!
+        </p>
+
+        <div class="sticker-canvas-box" id="stickerPad" style="background: #ffffff; border: var(--border-width) solid #000; border-radius: var(--border-radius); box-shadow: var(--shadow-size) var(--shadow-size) 0 #000; min-height: 260px; padding: 24px; position: relative; cursor: crosshair; overflow: hidden; user-select: none;">
+          <div style="font-family: var(--font-mono); font-weight: 700; color: #888; margin-bottom: 12px; pointer-events: none;">
+            📌 KLIKK HVOR SOM HELST INNI HER FOR Å KLISTRE:
+          </div>
+          <div style="display: flex; gap: 10px; margin-bottom: 20px; pointer-events: auto;">
+            <button class="btn btn-sm btn-yellow" onclick="setStickerType('🔥 HOT!')">🔥 HOT!</button>
+            <button class="btn btn-sm btn-pink" onclick="setStickerType('💥 WOW')">💥 WOW</button>
+            <button class="btn btn-sm btn-mint" onclick="setStickerType('⭐ PRO')">⭐ PRO</button>
+            <button class="btn btn-sm btn-purple" onclick="setStickerType('✌️ BRUTAL')">✌️ BRUTAL</button>
+            <button class="btn btn-sm btn-outline" onclick="clearStickerPad()" style="margin-left: auto;">Tøm blokken 🗑️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: RETRO ARCADE SOUNDBOARD -->
+    <section class="section soundboard-section" style="background: #f0fdf4;">
+      <div class="container">
+        <div class="section-badge">RETRO LYDLAB</div>
+        <h2 class="section-title">🕹️ Brutal Arcade Soundboard</h2>
+        <p class="section-desc">
+          Trykk på tastene for å fyre av ekte syntetiserte 8-bit arkadelyder (ingen eksterne filer, 100% Web Audio API).
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 18px;">
+          <button class="btn btn-lg btn-yellow btn-shadow-lg" onclick="playLaserSound()">⚡ LASER</button>
+          <button class="btn btn-lg btn-pink btn-shadow-lg" onclick="playCoinSound()">🪙 MYNT</button>
+          <button class="btn btn-lg btn-mint btn-shadow-lg" onclick="playJumpSound()">🦘 HOPP</button>
+          <button class="btn btn-lg btn-purple btn-shadow-lg" onclick="playPowerupSound()">🍄 POWERUP</button>
+          <button class="btn btn-lg btn-cyan btn-shadow-lg" onclick="playBoomSound()">💣 EKSPLOSJON</button>
+          <button class="btn btn-lg btn-white btn-shadow-lg" onclick="playVictoryChime()">🏆 SEIER</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: BRUTAL PRICING MATRIX -->
+    <section class="section pricing-section" style="background: #fefce8;">
+      <div class="container">
+        <div class="section-badge">ABONNEMENT</div>
+        <h2 class="section-title">💰 Brutal Prismodell uten Skjulte Gebyrer</h2>
+        <p class="section-desc">
+          Velg pakken som passer ditt neste prosjekt. 100% åpent og ærlig.
+        </p>
+
+        <div style="display: flex; justify-content: center; align-items: center; gap: 14px; margin-bottom: 40px;">
+          <span style="font-weight: 800; font-size: 1.1rem;">Månedlig</span>
+          <label class="brutal-switch">
+            <input type="checkbox" id="pricingBillingToggle">
+            <span class="slider"></span>
+          </label>
+          <span style="font-weight: 800; font-size: 1.1rem;">Årlig</span>
+          <span class="sticker sticker-pink" style="transform: rotate(4deg);">SPAR 25%! 🔥</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;">
+          <!-- TIER 1 -->
+          <div class="card" style="padding: 30px;">
+            <span class="badge badge-mint" style="width: fit-content; margin-bottom: 14px;">STARTER</span>
+            <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 6px;">Hobbyist</h3>
+            <p style="color: #555; margin-bottom: 20px;">Perfekt for personlige porteføljer og hobby-prosjekter.</p>
+            <div style="font-size: 2.8rem; font-weight: 800; font-family: var(--font-mono); margin-bottom: 20px;">
+              <span id="priceTier1">kr 0</span><span style="font-size: 1rem; color: #666;">/mnd</span>
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; font-weight: 600;">
+              <li>✔ 1 Nettsted i Neo-stil</li>
+              <li>✔ Ubegrenset klikk-moro</li>
+              <li>✔ Taktil feedback</li>
+              <li style="color: #999;">✖ Eget domenenavn</li>
+            </ul>
+            <button class="btn btn-outline" style="width: 100%;" onclick="buyPlan('Hobbyist')">Start Gratis</button>
+          </div>
+
+          <!-- TIER 2 -->
+          <div class="card" style="padding: 30px; background: #fffdf0; border-width: 4px; box-shadow: 8px 8px 0 #000;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+              <span class="badge badge-pink">MEST POPULÆR</span>
+              <span class="sticker sticker-yellow" style="font-size: 0.7rem;">ANBEFALT</span>
+            </div>
+            <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 6px;">Pro Studio</h3>
+            <p style="color: #555; margin-bottom: 20px;">For byråer og startups som vil skille seg radikalt ut.</p>
+            <div style="font-size: 2.8rem; font-weight: 800; font-family: var(--font-mono); margin-bottom: 20px;">
+              <span id="priceTier2">kr 299</span><span style="font-size: 1rem; color: #666;">/mnd</span>
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; font-weight: 600;">
+              <li>✔ Ubegrensede Neo-komponenter</li>
+              <li>✔ Live Neo-Styler tilgang</li>
+              <li>✔ Custom lydbibliotek</li>
+              <li>✔ Prioritert 24/7 support</li>
+            </ul>
+            <button class="btn btn-yellow btn-shadow-lg" style="width: 100%;" onclick="buyPlan('Pro Studio')">Velg Pro Studio 🔥</button>
+          </div>
+
+          <!-- TIER 3 -->
+          <div class="card" style="padding: 30px;">
+            <span class="badge badge-purple" style="width: fit-content; margin-bottom: 14px;">ENTERPRISE</span>
+            <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 6px;">Brutal Empire</h3>
+            <p style="color: #555; margin-bottom: 20px;">Skreddersydde designsystemer for store selskaper.</p>
+            <div style="font-size: 2.8rem; font-weight: 800; font-family: var(--font-mono); margin-bottom: 20px;">
+              <span id="priceTier3">kr 899</span><span style="font-size: 1rem; color: #666;">/mnd</span>
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; font-weight: 600;">
+              <li>✔ Alt i Pro Studio</li>
+              <li>✔ Dedikert designansvarlig</li>
+              <li>✔ WCAG AAA tilgjengelighetsgaranti</li>
+              <li>✔ SLA 99.99% oppetid</li>
+            </ul>
+            <button class="btn btn-white" style="width: 100%;" onclick="buyPlan('Brutal Empire')">Kontakt Salg</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION BANNER -->
+    <section class="cta-banner-section">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-content">
+            <span class="sticker sticker-yellow">KLAR FOR NOE NYTT?</span>
+            <h2 class="cta-title">Våg å skille deg ut fra mengden!</h2>
+            <p class="cta-desc">Neo-Brutalism viser at moderne webapplikasjoner kan være både funksjonelle, tilgjengelige og kjempegøyale å bruke.</p>
+          </div>
+          <div class="cta-action">
+            <button id="ctaConfettiBtn" class="btn btn-lg btn-pink btn-shadow-lg">Feire med konfetti! 🎉</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <div class="brand">
+          <h2 class="brand-title">BRUTAL<span class="brand-dot">.UI</span></h2>
+        </div>
+        <p>Bygget for å demonstrere Neo-Brutalism UI design i praksis.</p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-meta">
+          <span>⚡ 100% Vanilje HTML/CSS/JS</span>
+          <span>🖤 Ekte fete kanter og harde skygger</span>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Neo-Brutalism Showroom. Lisens: Fri til inspirasjon.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DIALOG -->
+  <div id="brutalModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="modal-badge badge-pink">VARSEL</span>
+        <h3 class="modal-title">BRUTALT BRA VALG!</h3>
+        <button id="closeModalBtn" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-emoji">🥊💥</div>
+        <h4>Du har nettopp åpnet en neo-brutalist dialogboks.</h4>
+        <p>
+          Legg merke til den tykke kanten, harde skyggen, og at det ikke finnes noen "myk" skygge i sikte.
+          Elementet er definert, tydelig og umulig å overse!
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button id="modalConfirmBtn" class="btn btn-yellow">Skjønner det!</button>
+        <button id="modalDismissBtn" class="btn btn-outline">Lukk vindu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast hidden">
+    <span class="toast-icon">⚡</span>
+    <span id="toastMessage" class="toast-text">Melding her!</span>
+  </div>
+
+  <!-- CONFETTI CANVAS -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>

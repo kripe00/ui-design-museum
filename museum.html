@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI DESIGN MUSEUM // 10 Ikoniske Designstiler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@600;700;800&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="museum.css">
+</head>
+<body>
+
+  <!-- GLOBAL NAVIGATION -->
+  <header class="museum-nav">
+    <div class="nav-content">
+      <div class="museum-logo">
+        <span class="logo-icon">🏛️</span>
+        <div class="logo-titles">
+          <span class="logo-title">UI DESIGN MUSEUM</span>
+          <span class="logo-sub">10 Historiske & Moderne Retninger</span>
+        </div>
+      </div>
+
+      <nav class="hub-links">
+        <a href="#metamorphosis" class="hub-link">⚡ Metamorfose-Test</a>
+        <a href="#gallery" class="hub-link">🏛️ Alle 10 Galleri</a>
+        <a href="index.html" class="hub-link tag-brutal">🥊 Neo-Brutalism</a>
+        <a href="bento.html" class="hub-link tag-bento">🍱 Bento Grid</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO HEADER -->
+    <section class="museum-hero">
+      <div class="container text-center">
+        <div class="hero-badge">DIGITAL DESIGNHISTORIE I PRAKSIS</div>
+        <h1 class="hero-main-title">Fra realistisk lær til rå neongul.</h1>
+        <p class="hero-intro-text">
+          Web- og appdesign har beveget seg gjennom store bølger av reaksjoner og motreaksjoner. 
+          Her kan du oppleve <strong>10 distinkte designfilosofier</strong> side om side – med ekte kode og levende interaksjon.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 1: THE INTERACTIVE METAMORPHOSIS LAB -->
+    <section id="metamorphosis" class="section morph-section">
+      <div class="container">
+        <div class="section-tag">INTERAKTIVT EKSPERIMENT</div>
+        <h2 class="section-h2">The Metamorphosis Sandbox: Én komponent, 10 sjeler</h2>
+        <p class="section-p">
+          Klikk på en av stilknappene nedenfor for å se nøyaktig samme widget forvandle seg i sanntid:
+        </p>
+
+        <!-- STYLE SWITCHER BUTTONS -->
+        <div class="morph-controls" id="morphControls">
+          <button class="morph-btn" data-style="skeuo">🪵 Skeuomorphism</button>
+          <button class="morph-btn" data-style="flat">📄 Flat Design</button>
+          <button class="morph-btn" data-style="material">📐 Material Design</button>
+          <button class="morph-btn" data-style="neumorphic">🪨 Neumorphism</button>
+          <button class="morph-btn" data-style="glass">🪟 Glassmorphism</button>
+          <button class="morph-btn active" data-style="neobrutal">🥊 Neo-Brutalism</button>
+          <button class="morph-btn" data-style="clay">🧸 Claymorphism</button>
+          <button class="morph-btn" data-style="bento">🍱 Bento Grid</button>
+          <button class="morph-btn" data-style="minimal">🏛️ Swiss Minimal</button>
+          <button class="morph-btn" data-style="cyberpunk">🕹️ Cyberpunk Y2K</button>
+        </div>
+
+        <!-- THE METAMORPHOSIS STAGE -->
+        <div class="morph-stage" id="morphStage">
+          <!-- Background decoration specifically for glassmorphism -->
+          <div class="stage-backdrop-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+          </div>
+
+          <!-- THE TRANSFORMING CARD -->
+          <div class="target-widget style-neobrutal" id="targetWidget">
+            <div class="widget-header">
+              <div class="widget-badge">FEATURED TRACK</div>
+              <span class="widget-status-dot"></span>
+            </div>
+
+            <div class="widget-artwork">
+              <span class="art-emoji">🎧</span>
+            </div>
+
+            <div class="widget-meta">
+              <h3 class="widget-title">Midnight Odyssey</h3>
+              <p class="widget-artist">Synthetic Waves • 2026</p>
+            </div>
+
+            <div class="widget-progress">
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 65%;"></div>
+              </div>
+              <div class="progress-timestamps">
+                <span>02:14</span>
+                <span>03:45</span>
+              </div>
+            </div>
+
+            <div class="widget-actions">
+              <button class="btn-widget-secondary" id="widgetPrevBtn">⏮</button>
+              <button class="btn-widget-primary" id="widgetPlayBtn">▶ Spill av</button>
+              <button class="btn-widget-secondary" id="widgetNextBtn">⏭</button>
+            </div>
+
+            <div class="widget-footer-info">
+              <span class="style-name-badge" id="currentStyleLabel">Stil: NEO-BRUTALISM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STYLE EXPLANATION BAR -->
+        <div class="style-intel-box" id="styleIntelBox">
+          <div class="intel-header">
+            <h4 id="intelTitle">🥊 Neo-Brutalism (Neubrutalism)</h4>
+            <span class="intel-era" id="intelEra">Trend: 2021 – Nåtid</span>
+          </div>
+          <p id="intelDescription">
+            Høye kontraster, 3px fete sorte rammer og 100% ugjennomsiktige harde skygger uten blur. 
+            Stilen er energisk, upolert og ekstremt taktil.
+          </p>
+          <div class="intel-code-preview" id="intelCss">
+            <code>border: 3px solid #000; box-shadow: 5px 5px 0px #000;</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE 10 DETAILED EXHIBIT HALLS -->
+    <section id="gallery" class="section gallery-section">
+      <div class="container">
+        <div class="section-tag">FULL OVERSIKT</div>
+        <h2 class="section-h2">De 10 Galleriene: Se dem side om side</h2>
+        <p class="section-p">
+          Her kan du studere kjerne-komponentene, knappene og formuttrykket i alle stilene:
+        </p>
+
+        <div class="gallery-grid">
+
+          <!-- 1. SKEUOMORPHISM -->
+          <div class="exhibit-card exhibit-skeuo">
+            <div class="exhibit-banner">1. Skeuomorphism</div>
+            <div class="exhibit-demo-area">
+              <div class="skeuo-box">
+                <div class="skeuo-leather-header">
+                  <span class="skeuo-stitch">···································</span>
+                  <div class="skeuo-metal-screw left"></div>
+                  <span class="skeuo-header-text">NOTATER</span>
+                  <div class="skeuo-metal-screw right"></div>
+                </div>
+                <div class="skeuo-pad-body">
+                  <p>Inspirert av ekte lær, treverk, børstet metall og glassrefleksjoner.</p>
+                  <button class="btn-skeuo-glossy">Trykk blank knapp</button>
+                </div>
+              </div>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">2007–2012 (Tidlig iOS)</span>
+              <p>Målet var å lære brukere berøringsskjerm ved å herme etter den fysiske verden.</p>
+            </div>
+          </div>
+
+          <!-- 2. FLAT DESIGN -->
+          <div class="exhibit-card exhibit-flat">
+            <div class="exhibit-banner">2. Flat Design</div>
+            <div class="exhibit-demo-area">
+              <div class="flat-tile-group">
+                <div class="flat-tile tile-blue">
+                  <span class="tile-icon">✉️</span>
+                  <span class="tile-label">E-post</span>
+                  <span class="tile-count">12</span>
+                </div>
+                <div class="flat-tile tile-teal">
+                  <span class="tile-icon">📅</span>
+                  <span class="tile-label">Kalender</span>
+                </div>
+              </div>
+              <button class="btn-flat">100% Flat Knapp</button>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">2012–2015 (Windows Phone / iOS 7)</span>
+              <p>Total motreaksjon: Null skygger, null teksturer, kun rene farger og skarp typografi.</p>
+            </div>
+          </div>
+
+          <!-- 3. MATERIAL DESIGN -->
+          <div class="exhibit-card exhibit-material">
+            <div class="exhibit-banner">3. Material Design</div>
+            <div class="exhibit-demo-area">
+              <div class="material-card">
+                <div class="material-card-content">
+                  <h4>Google Material</h4>
+                  <p>Grensesnittet behandles som fysiske ark av papir med ulike "elevation"-nivåer.</p>
+                </div>
+                <div class="material-actions">
+                  <button class="btn-material-flat">Avbryt</button>
+                  <button class="btn-material-contained ripple-target">Handling</button>
+                </div>
+                <button class="material-fab ripple-target" title="Floating Action Button">+</button>
+              </div>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">2014–Nåtid (Android / Google)</span>
+              <p>Gjeninnførte subtil dybde med realistisk heving (elevation) og klikkbølger (ripple).</p>
+            </div>
+          </div>
+
+          <!-- 4. NEUMORPHISM (SOFT UI) -->
+          <div class="exhibit-card exhibit-neumorphic">
+            <div class="exhibit-banner">4. Neumorphism</div>
+            <div class="exhibit-demo-area neumorphic-bg">
+              <div class="neu-card">
+                <div class="neu-icon-box">💧</div>
+                <h4>Soft UI</h4>
+                <p>Ekstrudert fra bakgrunnen med doble lys/skygger.</p>
+                <div class="neu-btn-row">
+                  <button class="neu-btn neu-btn-active">Aktiv</button>
+                  <button class="neu-btn neu-btn-inset">Innpresset</button>
+                </div>
+              </div>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">2019–2021 (Dribbble-trend)</span>
+              <p>Visuelt beroligende, men vanskelig for universell utforming på grunn av lav kontrast.</p>
+            </div>
+          </div>
+
+          <!-- 5. GLASSMORPHISM -->
+          <div class="exhibit-card exhibit-glass">
+            <div class="exhibit-banner">5. Glassmorphism</div>
+            <div class="exhibit-demo-area glass-demo-bg">
+              <div class="glass-ambient-circle c1"></div>
+              <div class="glass-ambient-circle c2"></div>
+              <div class="glass-card">
+                <span class="glass-chip">FROSTET GLASS</span>
+                <h4>Translucency</h4>
+                <p>Lag over fargesterke gradienter med backdrop-filter: blur(16px).</p>
+                <button class="btn-glass">Glassknapp ✨</button>
+              </div>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">2020–Nåtid (macOS Big Sur / Win11)</span>
+              <p>Skaper luftighet og futuristisk dybde når bakgrunnen er fargerik og dynamisk.</p>
+            </div>
+          </div>
+
+          <!-- 6. NEO-BRUTALISM -->
+          <div class="exhibit-card exhibit-neobrutal">
+            <div class="exhibit-banner">6. Neo-Brutalism</div>
+            <div class="exhibit-demo-area">
+              <div class="brutal-demo-box">
+                <div class="brutal-badge-rot">POPULÆR!</div>
+                <h4>Rått & Taktilt</h4>
+                <p>3px sorte kanter, neongult og 100% harde skygger uten blur.</p>
+                <button class="btn-brutal-demo">Klikk Taktilt 🥊</button>
+              </div>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">2021–Nåtid (Figma / Gumroad)</span>
+              <p>Høy tilgjengelighet (super kontrast), leken personlighet og umulig å overse.</p>
+            </div>
+          </div>
+
+          <!-- 7. CLAYMORPHISM -->
+          <div class="exhibit-card exhibit-clay">
+            <div class="exhibit-banner">7. Claymorphism</div>
+            <div class="exhibit-demo-area clay-demo-bg">
+              <div class="clay-box">
+                <span class="clay-icon">🧸</span>
+                <h4>3D Leire-Puff</h4>
+                <p>Oppblåst 3D-form med myke indre og ytre skygger.</p>
+                <button class="btn-clay">Klem på knappen</button>
+              </div>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">2021–Nåtid (Metaverse / Barneapper)</span>
+              <p>Koselig, vennlig og innbydende. Minner om lekedeig eller marshmallows.</p>
+            </div>
+          </div>
+
+          <!-- 8. BENTO GRID UI -->
+          <div class="exhibit-card exhibit-bento">
+            <div class="exhibit-banner">8. Bento Grid UI</div>
+            <div class="exhibit-demo-area bento-demo-bg">
+              <div class="mini-bento-grid">
+                <div class="bento-mini-cell c-wide">
+                  <span class="bento-tag">Ytelse</span>
+                  <span class="bento-stat">+34%</span>
+                </div>
+                <div class="bento-mini-cell c-square">
+                  <span class="bento-radar-dot"></span>
+                  <span class="bento-code">4ms</span>
+                </div>
+                <div class="bento-mini-cell c-full">
+                  <span class="bento-kbd">⌘K</span>
+                  <span class="bento-sub">Hurtignavigasjon</span>
+                </div>
+              </div>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">2023–Nåtid (Apple / Linear)</span>
+              <p>Modulær datatetthet, asymmetrisk grid og diskret spotlight-belysning.</p>
+            </div>
+          </div>
+
+          <!-- 9. SWISS MINIMALISM -->
+          <div class="exhibit-card exhibit-minimal">
+            <div class="exhibit-banner">9. Swiss Minimalism</div>
+            <div class="exhibit-demo-area">
+              <div class="swiss-box">
+                <span class="swiss-num">01 / TYPO</span>
+                <h3 class="swiss-title">ORDET ER DESIGNET.</h3>
+                <p class="swiss-p">Maksimalt negativt rom. Kun ren sort/hvit kontrast.</p>
+                <button class="btn-swiss">Utforsk —></button>
+              </div>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">1950-tallet → Moderne Web</span>
+              <p>Favoritt hos luksusmerker, motehus og arkitekter for et tidløst, rent uttrykk.</p>
+            </div>
+          </div>
+
+          <!-- 10. CYBERPUNK / Y2K -->
+          <div class="exhibit-card exhibit-cyberpunk">
+            <div class="exhibit-banner">10. Cyberpunk / Y2K</div>
+            <div class="exhibit-demo-area cyber-demo-bg">
+              <div class="cyber-box">
+                <div class="cyber-hud-corner tl"></div>
+                <div class="cyber-hud-corner tr"></div>
+                <div class="cyber-hud-corner bl"></div>
+                <div class="cyber-hud-corner br"></div>
+                <div class="cyber-glitch-tag">[SYS_ONLINE_2026]</div>
+                <h4 class="cyber-title">NEURAL_NET_V2</h4>
+                <p class="cyber-code">SCANLINES // NEON // GLITCH</p>
+                <button class="btn-cyber">INITIALISERE &gt;&gt;</button>
+              </div>
+            </div>
+            <div class="exhibit-footer">
+              <span class="era-tag">2000s / 2077 (Gaming / Web3)</span>
+              <p>Mørkt grensesnitt med neongrønn/cyan glød, scanlines og sci-fi terminaler.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HUB CALLOUT TO THE DEDICATED WEBSITES -->
+    <section class="section hub-callout-section">
+      <div class="container">
+        <div class="hub-cards-duo">
+          <div class="hub-banner-card brutal-promo">
+            <span class="badge-rot">FULL NETTSIDE</span>
+            <h3>Opplev Neo-Brutalism i fullskala</h3>
+            <p>Se det komplette nettstedet med live Neo-Styler, knapper og taktile lydeffekter.</p>
+            <a href="index.html" class="hub-btn brutal-btn">Gå til Neo-Brutalism Siden 🥊</a>
+          </div>
+
+          <div class="hub-banner-card bento-promo">
+            <span class="badge-pill">FULL NETTSIDE</span>
+            <h3>Opplev Bento Grid i fullskala</h3>
+            <p>Se det asymmetriske rutenettet med spotlight-mus, SVG-bølgegrafer og ⌘K-meny.</p>
+            <a href="bento.html" class="hub-btn bento-btn">Gå til Bento Grid Siden 🍱</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="museum-footer">
+    <div class="container footer-row">
+      <p>🏛️ <strong>UI Design Museum</strong> — Utviklet for å lære bort og visualisere digital designhistorie.</p>
+      <div class="footer-links">
+        <a href="index.html">Neo-Brutalism</a>
+        <a href="bento.html">Bento Grid</a>
+        <a href="#metamorphosis">Metamorfose</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="museum.js"></script>
+</body>
+</html>

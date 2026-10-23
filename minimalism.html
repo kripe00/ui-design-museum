@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWISS MINIMALISM // Atelier Zürich</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* STYLE BAR */
+    .style-bar {
+      background: #000000;
+      border-bottom: 1px solid #333333;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .style-bar-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #777777;
+      margin-right: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .style-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #cccccc;
+      text-decoration: none;
+      padding: 4px 10px;
+      border: 1px solid #333333;
+      transition: all 0.15s;
+    }
+    .style-link:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+    .style-link.active {
+      background: #ffffff;
+      color: #000000;
+      font-weight: 700;
+    }
+
+    /* SWISS MINIMALISM BASE (PURE WHITE, PURE BLACK, STRICT GRID) */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.4;
+      padding-bottom: 100px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 32px;
+    }
+
+    /* SWISS HEADER */
+    .swiss-header {
+      border-bottom: 1px solid #000000;
+      padding-bottom: 30px;
+      margin-bottom: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .swiss-title {
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+    .swiss-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      text-align: right;
+    }
+
+    /* EDITORIAL GRID */
+    .swiss-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 60px;
+      margin-bottom: 60px;
+    }
+
+    .column-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-top: 1px solid #000000;
+      padding-top: 10px;
+      margin-bottom: 24px;
+    }
+
+    .lead-text {
+      font-size: 1.8rem;
+      font-weight: 300;
+      line-height: 1.3;
+      letter-spacing: -0.5px;
+    }
+
+    .body-col p {
+      font-size: 0.95rem;
+      color: #222222;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    /* CATALOGUE TABLE */
+    .swiss-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 60px;
+    }
+    .swiss-table th, .swiss-table td {
+      border-bottom: 1px solid #000000;
+      padding: 16px 8px;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .swiss-table th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+    .swiss-table tr:hover td {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    /* MINIMAL BUTTON */
+    .btn-swiss {
+      background: #000000;
+      color: #ffffff;
+      border: 1px solid #000000;
+      padding: 16px 36px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-swiss:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* TYPE-SCALE SIMULATOR */
+    .type-simulator {
+      border: 1px solid #000000;
+      padding: 36px;
+      margin-bottom: 60px;
+    }
+    .sim-controls {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+    .sim-controls label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sim-preview-box {
+      border-top: 1px solid #000000;
+      padding-top: 24px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    #typePreviewText {
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      text-transform: uppercase;
+      transition: font-size 0.1s, letter-spacing 0.1s;
+    }
+
+    /* ARCHITECTURAL CARDS */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .arch-card {
+      border: 1px solid #000000;
+      padding: 24px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      aspect-ratio: 4/5;
+      transition: background 0.2s, color 0.2s;
+    }
+    .arch-card:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+    .arch-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .arch-body h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .arch-body p {
+      font-size: 0.82rem;
+      opacity: 0.75;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    @media (max-width: 850px) {
+      .swiss-grid { grid-template-columns: 1fr; gap: 30px; }
+      .swiss-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .swiss-meta { text-align: left; }
+      .arch-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STYLE BAR -->
+  <nav class="style-bar">
+    <span class="style-bar-title">UI Design:</span>
+    <a href="index.html" class="style-link">🥊 Neo-Brutalism</a>
+    <a href="bento.html" class="style-link">🍱 Bento Grid</a>
+    <a href="glass.html" class="style-link">🪟 Glassmorphism</a>
+    <a href="neumorphism.html" class="style-link">🪨 Neumorphism</a>
+    <a href="skeuomorphism.html" class="style-link">🪵 Skeuomorphism</a>
+    <a href="claymorphism.html" class="style-link">🧸 Claymorphism</a>
+    <a href="flat.html" class="style-link">📄 Flat Design</a>
+    <a href="material.html" class="style-link">📐 Material Design</a>
+    <a href="minimalism.html" class="style-link active">🏛️ Swiss Minimal</a>
+    <a href="cyberpunk.html" class="style-link">🕹️ Cyberpunk Y2K</a>
+    <a href="museum.html" class="style-link" style="margin-left: auto;">🏛️ Se Museum</a>
+  </nav>
+
+  <div class="container">
+    <header class="swiss-header">
+      <div>
+        <h1 class="swiss-title">ATELIER<br>ZÜRICH.</h1>
+      </div>
+      <div class="swiss-meta">
+        <p>EDISJON NO. 48</p>
+        <p>TYPOGRAFISK ORDEN // 1957 — 2026</p>
+      </div>
+    </header>
+
+    <div class="swiss-grid">
+      <div>
+        <div class="column-title">01 / MANIFESTO</div>
+        <p class="lead-text">
+          Når enhver overflødig linje og skygge fjernes, er det kun formålet som gjenstår. 
+          Ordet er arkitekturen.
+        </p>
+      </div>
+
+      <div class="body-col">
+        <div class="column-title">02 / PRINSIPPER</div>
+        <p>Den sveitsiske stilen (International Typographic Style) oppstod i Zürich og Basel på 1950-tallet.</p>
+        <p>Den forkaster pynt til fordel for et matematisk rutenett, asymmetrisk layout og Helvetica-typografi.</p>
+      </div>
+
+      <div class="body-col">
+        <div class="column-title">03 / PRAKSIS</div>
+        <p>I dag brukes denne stilen av luksusmerker, kunstinstitusjoner og avantgarde-arkitekter.</p>
+        <button class="btn-swiss" onclick="showSwissConfirm('MONOGRAF BESTILT // SENDT TIL TRUKK')">Bestill Monograf —></button>
+      </div>
+    </div>
+
+    <!-- TYPE-SCALE SIMULATOR -->
+    <div class="type-simulator">
+      <div class="column-title">04 / INTERAKTIV TYPE-SKALA SIMULATOR</div>
+      <div class="sim-controls">
+        <label>
+          FONTHØYDE: <span id="sizeVal">48px</span>
+          <input type="range" id="sizeSlider" min="24" max="84" value="48" oninput="updateTypeScale()">
+        </label>
+        <label>
+          SPACING (KERNING): <span id="spacingVal">-2px</span>
+          <input type="range" id="spacingSlider" min="-5" max="15" value="-2" oninput="updateTypeScale()">
+        </label>
+        <button class="btn-swiss" style="padding: 6px 14px; font-size: 0.75rem;" onclick="resetTypeScale()">NULLSTILL</button>
+      </div>
+      <div class="sim-preview-box">
+        <div id="typePreviewText" style="font-size: 48px; letter-spacing: -2px;">
+          FORM FØLGER FUNKSJON.
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHITECTURAL MONOGRAPHS -->
+    <div class="column-title" style="margin-bottom: 20px;">05 / UTVALGTE MONOGRAFIER</div>
+    <div class="arch-grid">
+      <div class="arch-card" onclick="showSwissConfirm('MONOGRAF: VILLA BASEL 1962 ÅPNET')">
+        <div class="arch-num">REF // CH-4051</div>
+        <div class="arch-body">
+          <h3>VILLA BASEL</h3>
+          <p>47.5596° N, 7.5886° E • ARMERTE BETONGPLATER</p>
+        </div>
+      </div>
+      <div class="arch-card" onclick="showSwissConfirm('MONOGRAF: KUNSTHALLE ZÜRICH ÅPNET')">
+        <div class="arch-num">REF // CH-8005</div>
+        <div class="arch-body">
+          <h3>KUNSTHALLE ZÜRICH</h3>
+          <p>47.3892° N, 8.5284° E • GLASS, STÅL & RIT-GRID</p>
+        </div>
+      </div>
+      <div class="arch-card" onclick="showSwissConfirm('MONOGRAF: ALPEPAVILJONG ST. MORITZ ÅPNET')">
+        <div class="arch-num">REF // CH-7500</div>
+        <div class="arch-body">
+          <h3>ALPEPAVILJONG</h3>
+          <p>46.4908° N, 9.8355° E • LERKETRE & SKIFERSTEIN</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATALOGUE TABLE -->
+    <h2 style="font-size: 1.6rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase;">06 / Komplett Prosjektarkiv</h2>
+    <table class="swiss-table">
+      <thead>
+        <tr>
+          <th>Ref.</th>
+          <th>Tittel</th>
+          <th>Sted</th>
+          <th>År</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr onclick="showSwissConfirm('ARKIVPOST #01 VALGT // BASEL 2024')">
+          <td>#01</td>
+          <td>Paviljong for Konseptkunst</td>
+          <td>Basel</td>
+          <td>2024</td>
+        </tr>
+        <tr onclick="showSwissConfirm('ARKIVPOST #02 VALGT // LUZERN 2025')">
+          <td>#02</td>
+          <td>Monolitisk Betongresidens</td>
+          <td>Luzern</td>
+          <td>2025</td>
+        </tr>
+        <tr onclick="showSwissConfirm('ARKIVPOST #03 VALGT // ZÜRICH 2026')">
+          <td>#03</td>
+          <td>Typografisk Museum og Arkiv</td>
+          <td>Zürich</td>
+          <td>2026</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SWISS CONFIRMATION BAR -->
+  <div id="swissBar" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #000000; color: #ffffff; padding: 18px 32px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; display: none; justify-content: space-between; align-items: center; z-index: 9999; border-top: 1px solid #ffffff;">
+    <span id="swissText">STATUS: HANDLING UTFØRT</span>
+    <span style="cursor: pointer;" onclick="hideSwissBar()">[LUKK X]</span>
+  </div>
+
+  <script>
+    const swissBar = document.getElementById('swissBar');
+    const swissText = document.getElementById('swissText');
+    let swissTimer = null;
+
+    function showSwissConfirm(msg) {
+      swissText.textContent = msg;
+      swissBar.style.display = 'flex';
+      clearTimeout(swissTimer);
+      swissTimer = setTimeout(hideSwissBar, 2800);
+    }
+
+    function hideSwissBar() {
+      swissBar.style.display = 'none';
+    }
+
+    function updateTypeScale() {
+      const size = document.getElementById('sizeSlider').value;
+      const spacing = document.getElementById('spacingSlider').value;
+      const preview = document.getElementById('typePreviewText');
+      document.getElementById('sizeVal').textContent = size + 'px';
+      document.getElementById('spacingVal').textContent = spacing + 'px';
+      preview.style.fontSize = size + 'px';
+      preview.style.letterSpacing = spacing + 'px';
+    }
+
+    function resetTypeScale() {
+      document.getElementById('sizeSlider').value = 48;
+      document.getElementById('spacingSlider').value = -2;
+      updateTypeScale();
+      showSwissConfirm('TYPOGRAFISK SKALA NULLSTILT TIL STANDARD (48PX, -2PX)');
+    }
+  </script>
+</body>
+</html>

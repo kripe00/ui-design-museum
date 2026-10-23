@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEUMORPHISM // Lumina Smart Home Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    /* STYLE BAR (Common to all 10 styles) */
+    .style-bar {
+      background: #e0e5ec;
+      border-bottom: 2px solid #d1d9e6;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .style-bar-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #797d9a;
+      margin-right: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .style-link {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #55597d;
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #e0e5ec;
+      box-shadow: 2px 2px 5px #b8b9be, -2px -2px 5px #ffffff;
+      transition: all 0.2s;
+    }
+    .style-link:hover {
+      box-shadow: inset 2px 2px 4px #b8b9be, inset -2px -2px 4px #ffffff;
+    }
+    .style-link.active {
+      box-shadow: inset 2px 2px 4px #b8b9be, inset -2px -2px 4px #ffffff;
+      color: #6c5ce7;
+      font-weight: 800;
+    }
+
+    /* NEUMORPHISM BASE STYLES */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #e0e5ec;
+      color: #31344b;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* HEADER */
+    .neu-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .brand-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #31344b;
+      letter-spacing: -0.5px;
+    }
+    .brand-title span { color: #6c5ce7; }
+
+    /* NEUMORPHIC CARDS & PANELS */
+    .neu-card {
+      background: #e0e5ec;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 12px 12px 24px #b8b9be, -12px -12px 24px #ffffff;
+      position: relative;
+    }
+
+    .neu-inset {
+      background: #e0e5ec;
+      border-radius: 20px;
+      box-shadow: inset 6px 6px 12px #b8b9be, inset -6px -6px 12px #ffffff;
+      padding: 20px;
+    }
+
+    /* GRID */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    /* THERMOSTAT DIAL */
+    .dial-wrapper {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .thermo-dial {
+      width: 190px;
+      height: 190px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      background: #e0e5ec;
+      box-shadow: 14px 14px 28px #b8b9be, -14px -14px 28px #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      transition: box-shadow 0.2s;
+    }
+    .thermo-dial:active {
+      box-shadow: inset 6px 6px 12px #b8b9be, inset -6px -6px 12px #ffffff;
+    }
+    .dial-temp {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #31344b;
+    }
+    .dial-unit {
+      font-size: 0.85rem;
+      color: #797d9a;
+      font-weight: 600;
+    }
+
+    .dial-controls {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .neu-btn-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: #e0e5ec;
+      box-shadow: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff;
+      color: #31344b;
+      font-size: 1.4rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .neu-btn-circle:active {
+      box-shadow: inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #ffffff;
+    }
+
+    /* LIGHTING & SWITCHES */
+    .switch-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .switch-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      border-radius: 16px;
+      box-shadow: inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #ffffff;
+    }
+    .switch-info h4 { font-size: 0.95rem; font-weight: 700; }
+    .switch-info span { font-size: 0.75rem; color: #797d9a; }
+
+    /* NEU TOGGLE SWITCH */
+    .neu-toggle {
+      width: 60px;
+      height: 32px;
+      border-radius: 20px;
+      background: #e0e5ec;
+      box-shadow: inset 3px 3px 6px #b8b9be, inset -3px -3px 6px #ffffff;
+      position: relative;
+      cursor: pointer;
+    }
+    .neu-toggle-thumb {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #e0e5ec;
+      box-shadow: 3px 3px 6px #b8b9be, -3px -3px 6px #ffffff;
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s;
+    }
+    .neu-toggle.active .neu-toggle-thumb {
+      transform: translateX(26px);
+      background: #6c5ce7;
+      box-shadow: 0 0 10px #6c5ce7;
+    }
+
+    /* ROOMS GRID */
+    .rooms-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .room-card {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .room-card:hover {
+      transform: translateY(-2px);
+    }
+    .room-icon {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .room-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+    .room-stat {
+      font-size: 0.8rem;
+      color: #797d9a;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* AUDIO CONTROLLER (BOTTOM) */
+    .audio-panel {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .audio-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .audio-disc {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: #e0e5ec;
+      box-shadow: inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .main-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COMMON STYLE NAVIGATOR -->
+  <nav class="style-bar">
+    <span class="style-bar-title">UI Design:</span>
+    <a href="index.html" class="style-link">🥊 Neo-Brutalism</a>
+    <a href="bento.html" class="style-link">🍱 Bento Grid</a>
+    <a href="glass.html" class="style-link">🪟 Glassmorphism</a>
+    <a href="neumorphism.html" class="style-link active">🪨 Neumorphism</a>
+    <a href="skeuomorphism.html" class="style-link">🪵 Skeuomorphism</a>
+    <a href="claymorphism.html" class="style-link">🧸 Claymorphism</a>
+    <a href="flat.html" class="style-link">📄 Flat Design</a>
+    <a href="material.html" class="style-link">📐 Material Design</a>
+    <a href="minimalism.html" class="style-link">🏛️ Swiss Minimal</a>
+    <a href="cyberpunk.html" class="style-link">🕹️ Cyberpunk Y2K</a>
+    <a href="museum.html" class="style-link" style="margin-left: auto;">🏛️ Se Museum</a>
+  </nav>
+
+  <div class="container">
+    <!-- HEADER -->
+    <header class="neu-nav">
+      <h1 class="brand-title">LUMINA<span>.HOME</span></h1>
+      <button class="neu-btn-circle" id="masterPowerBtn" title="Hovedbryter">⏻</button>
+    </header>
+
+    <div class="main-grid">
+      <!-- THERMOSTAT CARD -->
+      <div class="neu-card dial-wrapper">
+        <h3 style="margin-bottom: 14px;">Klimakontroll</h3>
+        <div class="thermo-dial" id="thermoDial">
+          <span class="dial-temp" id="tempDisplay">21.5°</span>
+          <span class="dial-unit">INNETEMPERATUR</span>
+        </div>
+        <div class="dial-controls">
+          <button class="neu-btn-circle" id="tempDownBtn">−</button>
+          <button class="neu-btn-circle" id="tempUpBtn">+</button>
+        </div>
+      </div>
+
+      <!-- SMART LIGHTING CARD -->
+      <div class="neu-card">
+        <h3>Lys & Atmosfære</h3>
+        <p style="font-size: 0.85rem; color: #797d9a; margin-bottom: 12px;">Styr lysstyrke og soner taktilt:</p>
+
+        <div class="switch-list">
+          <div class="switch-row">
+            <div class="switch-info">
+              <h4>Stue Hovedlys</h4>
+              <span>Varm hvit • 80%</span>
+            </div>
+            <div class="neu-toggle active" data-toggle>
+              <div class="neu-toggle-thumb"></div>
+            </div>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <h4>Kjøkkenbenk LED</h4>
+              <span>Nøytral hvit • 100%</span>
+            </div>
+            <div class="neu-toggle active" data-toggle>
+              <div class="neu-toggle-thumb"></div>
+            </div>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <h4>Nattbordslampe</h4>
+              <span>Dempet glød • Av</span>
+            </div>
+            <div class="neu-toggle" data-toggle>
+              <div class="neu-toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROOMS -->
+    <h2 class="rooms-title">Rom & Soner</h2>
+    <div class="rooms-grid">
+      <div class="neu-card room-card">
+        <div class="room-icon">🛋️</div>
+        <div class="room-name">Stue</div>
+        <div class="room-stat">22.0° • 3 enheter</div>
+      </div>
+
+      <div class="neu-card room-card">
+        <div class="room-icon">🍳</div>
+        <div class="room-name">Kjøkken</div>
+        <div class="room-stat">21.0° • 2 enheter</div>
+      </div>
+
+      <div class="neu-card room-card">
+        <div class="room-icon">🛏️</div>
+        <div class="room-name">Hovedsoverom</div>
+        <div class="room-stat">19.5° • 1 enhet</div>
+      </div>
+
+      <div class="neu-card room-card">
+        <div class="room-icon">💻</div>
+        <div class="room-name">Hjemmekontor</div>
+        <div class="room-stat">21.5° • 4 enheter</div>
+      </div>
+    </div>
+
+    <!-- SECTION: HI-FI GRAPHIC EQUALIZER & MOOD PALETTE -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; margin-top: 36px;">
+      <!-- EQUALIZER -->
+      <div class="neu-card">
+        <h3>Hi-Fi Grafisk Equalizer</h3>
+        <p style="font-size: 0.85rem; color: #797d9a; margin-bottom: 24px;">Innpressede myke slidere med taktil justering:</p>
+
+        <div style="display: flex; justify-content: space-around; align-items: flex-end; height: 160px; padding: 10px 0;">
+          <!-- BAND 1 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <input type="range" class="eq-slider" min="-12" max="12" value="4" orient="vertical" style="-webkit-appearance: slider-vertical; width: 14px; height: 110px; accent-color: #6c5ce7; cursor: pointer;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;">60Hz</span>
+          </div>
+          <!-- BAND 2 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <input type="range" class="eq-slider" min="-12" max="12" value="2" orient="vertical" style="-webkit-appearance: slider-vertical; width: 14px; height: 110px; accent-color: #6c5ce7; cursor: pointer;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;">250Hz</span>
+          </div>
+          <!-- BAND 3 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <input type="range" class="eq-slider" min="-12" max="12" value="-1" orient="vertical" style="-webkit-appearance: slider-vertical; width: 14px; height: 110px; accent-color: #6c5ce7; cursor: pointer;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;">1kHz</span>
+          </div>
+          <!-- BAND 4 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <input type="range" class="eq-slider" min="-12" max="12" value="6" orient="vertical" style="-webkit-appearance: slider-vertical; width: 14px; height: 110px; accent-color: #6c5ce7; cursor: pointer;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;">8kHz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SMART MOOD PALETTE -->
+      <div class="neu-card">
+        <h3>Smartlys Fargepalett</h3>
+        <p style="font-size: 0.85rem; color: #797d9a; margin-bottom: 20px;">Velg forhåndsinnstilt lysstemning:</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;">
+          <div class="neu-inset" style="cursor: pointer; text-align: center;" onclick="showNeuConfirm('Stemning satt: Varm Solnedgang (2400K)')">
+            <span style="font-size: 1.6rem; display: block; margin-bottom: 4px;">🌅</span>
+            <div style="font-weight: 700; font-size: 0.9rem;">Solnedgang</div>
+            <span style="font-size: 0.75rem; color: #797d9a;">2400K Varm</span>
+          </div>
+
+          <div class="neu-inset" style="cursor: pointer; text-align: center;" onclick="showNeuConfirm('Stemning satt: Nordisk Dagslys (4000K)')">
+            <span style="font-size: 1.6rem; display: block; margin-bottom: 4px;">🌤️</span>
+            <div style="font-weight: 700; font-size: 0.9rem;">Dagslys</div>
+            <span style="font-size: 0.75rem; color: #797d9a;">4000K Klart</span>
+          </div>
+
+          <div class="neu-inset" style="cursor: pointer; text-align: center;" onclick="showNeuConfirm('Stemning satt: Midnatt Neon (Lilla/Blå)')">
+            <span style="font-size: 1.6rem; display: block; margin-bottom: 4px;">🌌</span>
+            <div style="font-weight: 700; font-size: 0.9rem;">Midnatt</div>
+            <span style="font-size: 0.75rem; color: #797d9a;">Stemning</span>
+          </div>
+
+          <div class="neu-inset" style="cursor: pointer; text-align: center;" onclick="showNeuConfirm('Stemning satt: Lesemodus (Optimal kontrast)')">
+            <span style="font-size: 1.6rem; display: block; margin-bottom: 4px;">📖</span>
+            <div style="font-weight: 700; font-size: 0.9rem;">Fokus & Lesing</div>
+            <span style="font-size: 0.75rem; color: #797d9a;">3200K Fokus</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUDIO CONTROLLER -->
+    <div class="neu-card audio-panel">
+      <div class="audio-meta">
+        <div class="audio-disc">🎵</div>
+        <div>
+          <h4 style="font-size: 1.05rem;">Nordic Chill Beats</h4>
+          <span style="font-size: 0.8rem; color: #797d9a;">Sonos Stue • 45% volum</span>
+        </div>
+      </div>
+      <div class="audio-controls">
+        <button class="neu-btn-circle" id="audioPrev">⏮</button>
+        <button class="neu-btn-circle" id="audioPlay" style="width: 60px; height: 60px; color: #6c5ce7;">▶</button>
+        <button class="neu-btn-circle" id="audioNext">⏭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEUMORPHIC CONFIRMATION TOAST -->
+  <div id="neuToast" style="position: fixed; bottom: 30px; right: 30px; background: #e0e5ec; border-radius: 18px; padding: 16px 24px; color: #31344b; font-weight: 700; font-size: 0.9rem; box-shadow: 8px 8px 16px #b8b9be, -8px -8px 16px #ffffff; z-index: 9999; display: none; align-items: center; gap: 10px;"></div>
+
+  <script>
+    const neuToast = document.getElementById('neuToast');
+    function showNeuConfirm(msg) {
+      neuToast.innerHTML = `<span style="color: #6c5ce7; font-size: 1.1rem;">●</span> ${msg}`;
+      neuToast.style.display = 'flex';
+      clearTimeout(neuToast._timer);
+      neuToast._timer = setTimeout(() => { neuToast.style.display = 'none'; }, 2600);
+    }
+
+    // Temperature adjustment
+    let temp = 21.5;
+    const tempDisplay = document.getElementById('tempDisplay');
+    document.getElementById('tempUpBtn').addEventListener('click', () => {
+      temp = Math.min(28, temp + 0.5);
+      tempDisplay.textContent = temp.toFixed(1) + '°';
+      showNeuConfirm(`Termostat satt til ${temp.toFixed(1)}°`);
+    });
+    document.getElementById('tempDownBtn').addEventListener('click', () => {
+      temp = Math.max(16, temp - 0.5);
+      tempDisplay.textContent = temp.toFixed(1) + '°';
+      showNeuConfirm(`Termostat satt til ${temp.toFixed(1)}°`);
+    });
+
+    // Toggle switches
+    document.querySelectorAll('[data-toggle]').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        const name = toggle.closest('.switch-row').querySelector('h4').textContent;
+        const state = toggle.classList.contains('active') ? 'På' : 'Av';
+        showNeuConfirm(`${name}: ${state}`);
+      });
+    });
+
+    // Master Power
+    document.getElementById('masterPowerBtn').addEventListener('click', () => {
+      showNeuConfirm('⏻ Lumina Smart Home: Status oppdatert');
+    });
+
+    // Room cards
+    document.querySelectorAll('.room-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const room = card.querySelector('.room-name').textContent;
+        showNeuConfirm(`Valgte sone: ${room}`);
+      });
+    });
+
+    // Audio play toggle
+    const audioPlay = document.getElementById('audioPlay');
+    let isPlaying = false;
+    audioPlay.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      audioPlay.textContent = isPlaying ? '⏸' : '▶';
+      showNeuConfirm(isPlaying ? '▶ Spiller Nordic Chill Beats' : '⏸ Musikk pauset');
+    });
+
+    document.getElementById('audioPrev').addEventListener('click', () => showNeuConfirm('⏮ Forrige spor'));
+    document.getElementById('audioNext').addEventListener('click', () => showNeuConfirm('⏭ Neste spor'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BENTO GRID // Next-Gen UI Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="bento.css">
+</head>
+<body class="dark-theme">
+
+  <!-- TOP MULTI-STYLE NAVIGATOR (COMMON TO ALL 10 STYLES) -->
+  <nav class="style-bar">
+    <span class="style-bar-title">UI Design:</span>
+    <a href="index.html" class="style-link">🥊 Neo-Brutalism</a>
+    <a href="bento.html" class="style-link active">🍱 Bento Grid</a>
+    <a href="glass.html" class="style-link">🪟 Glassmorphism</a>
+    <a href="neumorphism.html" class="style-link">🪨 Neumorphism</a>
+    <a href="skeuomorphism.html" class="style-link">🪵 Skeuomorphism</a>
+    <a href="claymorphism.html" class="style-link">🧸 Claymorphism</a>
+    <a href="flat.html" class="style-link">📄 Flat Design</a>
+    <a href="material.html" class="style-link">📐 Material Design</a>
+    <a href="minimalism.html" class="style-link">🏛️ Swiss Minimal</a>
+    <a href="cyberpunk.html" class="style-link">🕹️ Cyberpunk Y2K</a>
+    <a href="museum.html" class="style-link" style="margin-left: auto;">🏛️ Se Museum</a>
+  </nav>
+
+  <!-- BACKGROUND GLOW AMBIENCE -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- NAVIGATION -->
+  <header class="bento-nav">
+    <div class="nav-wrapper">
+      <div class="nav-brand">
+        <span class="brand-glyph">🍱</span>
+        <span class="brand-text">BENTO<span class="brand-accent">.GRID</span></span>
+        <span class="version-badge">Linear-Style</span>
+      </div>
+
+      <div class="nav-center">
+        <a href="museum.html" class="nav-pill-link">🏛️ Alle 10 Designstiler</a>
+        <a href="index.html" class="nav-pill-link">← Neo-Brutalism</a>
+        <a href="#bento-grid" class="nav-pill-link active">Bento Grid</a>
+        <a href="#features" class="nav-pill-link">Kjennetegn</a>
+      </div>
+
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="action-btn" title="Veksle mellom mørk og lys modus">
+          <span id="themeIcon">☀️</span>
+        </button>
+        <button id="cmdKeyBtn" class="action-btn-shortcut">
+          <kbd>⌘</kbd><kbd>K</kbd>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <main class="main-container">
+    <section class="hero-intro">
+      <div class="hero-tag">
+        <span class="pulse-dot"></span>
+        <span>MODERNE WEBTREND // 2026</span>
+      </div>
+      <h1 class="hero-title">
+        Modulær orden.<br>
+        <span class="gradient-text">Ekstrem presisjon.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Bento Grid UI henter inspirasjon fra japanske lunsjbokser der hver ingrediens har sitt eget rom. 
+        Her møtes asymmetrisk rutenett, datatette widgets, og subtil lyssetting.
+      </p>
+    </section>
+
+    <!-- THE BENTO GRID -->
+    <section id="bento-grid" class="bento-container">
+      
+      <!-- CARD 1: LARGE FEATURE CARD (Col span 2, Row span 2) -->
+      <div class="bento-card card-large" data-spotlight>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="chip chip-blue">Ytelse & Data</span>
+            <span class="metric-trend">+28.4% denne uken</span>
+          </div>
+
+          <div class="card-content-main">
+            <h2 class="card-title">Sanntids Analytics & Gjennomstrømming</h2>
+            <p class="card-description">
+              Kontinuerlig strømming av hendelser med sub-millisekund prosessering og automatisk indeksering.
+            </p>
+
+            <!-- SVG INTERACTIVE GRAPH -->
+            <div class="chart-wrapper">
+              <svg class="bento-chart" viewBox="0 0 500 160" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <path class="chart-area" d="M 0,130 Q 80,40 160,80 T 320,50 T 500,20 L 500,160 L 0,160 Z" fill="url(#chartGradient)"></path>
+                <path class="chart-line" d="M 0,130 Q 80,40 160,80 T 320,50 T 500,20" fill="none" stroke="#38bdf8" stroke-width="3"></path>
+              </svg>
+              <div class="chart-indicator" id="chartLiveIndicator">
+                <span class="indicator-dot"></span>
+                <span class="indicator-text">99.98% oppetid</span>
+              </div>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric-box">
+                <span class="metric-number" id="requestsCounter">4.8M</span>
+                <span class="metric-sub">Kall / døgn</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-number">12ms</span>
+                <span class="metric-sub">Gj.snitt respons</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-number">0.00%</span>
+                <span class="metric-sub">Pakketap</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: TALL / RADAR LATENCY CARD (Col span 1) -->
+      <div class="bento-card card-tall" data-spotlight>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="chip chip-green">Global Edge</span>
+            <span class="live-badge"><span class="ping-dot"></span>LIVE</span>
+          </div>
+
+          <div class="card-content-center">
+            <div class="radar-circle">
+              <div class="radar-scan"></div>
+              <div class="radar-ping ping-1"></div>
+              <div class="radar-ping ping-2"></div>
+              <div class="radar-node node-oslo" title="Oslo Node: 4ms"></div>
+              <div class="radar-node node-fra" title="Frankfurt Node: 14ms"></div>
+              <div class="radar-node node-nyc" title="New York Node: 68ms"></div>
+            </div>
+
+            <h3 class="card-title-sm">Globalt Edge-nettverk</h3>
+            <p class="card-sub-sm">Forespørsler rutes automatisk til nærmeste datasenter.</p>
+          </div>
+
+          <div class="edge-nodes-list">
+            <div class="node-row">
+              <span class="node-name">🇳🇴 Oslo</span>
+              <span class="node-speed text-green">4 ms</span>
+            </div>
+            <div class="node-row">
+              <span class="node-name">🇩🇪 Frankfurt</span>
+              <span class="node-speed text-green">14 ms</span>
+            </div>
+            <div class="node-row">
+              <span class="node-name">🇺🇸 New York</span>
+              <span class="node-speed text-yellow">68 ms</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: KEYBOARD FIRST / COMMAND MENU (Col span 1) -->
+      <div class="bento-card card-shortcuts" data-spotlight>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="chip chip-purple">Keyboard First</span>
+          </div>
+
+          <h3 class="card-title-sm">Hurtigmeny & Kommandoer</h3>
+          <p class="card-sub-sm">Utviklet for lynrask navigasjon uten mus.</p>
+
+          <div class="shortcuts-list">
+            <div class="shortcut-item">
+              <span>Åpne søk</span>
+              <div class="keys"><kbd>⌘</kbd><kbd>K</kbd></div>
+            </div>
+            <div class="shortcut-item">
+              <span>Ny oppgave</span>
+              <div class="keys"><kbd>C</kbd></div>
+            </div>
+            <div class="shortcut-item">
+              <span>Bytt visning</span>
+              <div class="keys"><kbd>G</kbd><kbd>V</kbd></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 4: CODE & AUTOMATION (Col span 2) -->
+      <div class="bento-card card-code" data-spotlight>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="chip chip-cyan">TypeScript SDK</span>
+            <button class="copy-code-btn" id="copyCodeBtn">Kopier kode</button>
+          </div>
+
+          <div class="code-editor-mock">
+            <div class="editor-header">
+              <span class="editor-dot red"></span>
+              <span class="editor-dot yellow"></span>
+              <span class="editor-dot green"></span>
+              <span class="editor-filename">client.ts</span>
+            </div>
+            <pre class="editor-code"><code><span class="kw">import</span> { BentoClient } <span class="kw">from</span> <span class="str">'@bento/core'</span>;
+
+<span class="kw">const</span> bento = <span class="kw">new</span> <span class="fn">BentoClient</span>({
+  grid: <span class="str">'asymmetric'</span>,
+  spotlight: <span class="kw">true</span>,
+  latency: <span class="num">12</span> <span class="com">/* ms */</span>
+});
+
+<span class="kw">await</span> bento.<span class="fn">optimizeLayout</span>();</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 5: SECURITY & PRIVACY (Col span 1) -->
+      <div class="bento-card card-security" data-spotlight>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="chip chip-amber">Sikkerhet</span>
+          </div>
+
+          <div class="security-visual">
+            <div class="shield-icon-wrap" id="shieldToggle">
+              <span class="shield-glyph">🛡️</span>
+              <span class="shield-pulse"></span>
+            </div>
+          </div>
+
+          <h3 class="card-title-sm">End-to-End Sikring</h3>
+          <p class="card-sub-sm">Automatisk kryptert i transitt og ved hvile.</p>
+
+          <div class="security-status">
+            <span class="status-indicator"></span>
+            <span id="securityStatusText">256-bit AES Aktiv</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 6: INTEGRATION ECOSYSTEM (Col span 3) -->
+      <div class="bento-card card-ecosystem" data-spotlight>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="chip chip-pink">Økosystem</span>
+            <span class="card-badge-sub">Koble til favorittverktøyene dine</span>
+          </div>
+
+          <div class="ecosystem-grid">
+            <div class="eco-item">
+              <div class="eco-icon figma">🎨</div>
+              <span class="eco-name">Figma</span>
+              <span class="eco-tag">Sync</span>
+            </div>
+            <div class="eco-item">
+              <div class="eco-icon github">🐙</div>
+              <span class="eco-name">GitHub</span>
+              <span class="eco-tag">CI/CD</span>
+            </div>
+            <div class="eco-item">
+              <div class="eco-icon slack">💬</div>
+              <span class="eco-name">Slack</span>
+              <span class="eco-tag">Varsler</span>
+            </div>
+            <div class="eco-item">
+              <div class="eco-icon vercel">▲</div>
+              <span class="eco-name">Vercel</span>
+              <span class="eco-tag">Deploy</span>
+            </div>
+            <div class="eco-item">
+              <div class="eco-icon linear">📐</div>
+              <span class="eco-name">Linear</span>
+              <span class="eco-tag">Issues</span>
+            </div>
+          </div>
+        </div>
+      <!-- CARD 7: UPTIME HEATMAP (Col span 2) -->
+      <div class="bento-card" style="grid-column: span 2;" data-spotlight>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="chip chip-green">System Uptime</span>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-green); font-weight: 700;">99.994% // Siste 90 dager</span>
+          </div>
+          <h3 class="card-title-sm">Global Tilgjengelighets-Heatmap</h3>
+          <p class="card-sub-sm">Sanntids monitorering over 24 distribuerte datasentre.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(28, 1fr); gap: 4px; margin-top: 14px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 10px; border: 1px solid var(--border-card);">
+            <!-- Generated green status tiles -->
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 1: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 2: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 3: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 4: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #16a34a;" title="Dag 5: 99.9%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 6: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 7: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 8: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 9: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 10: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 11: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 12: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 13: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 14: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 15: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #eab308;" title="Dag 16: 98.4% (Vedlikehold)"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 17: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 18: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 19: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 20: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 21: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 22: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 23: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 24: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 25: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 26: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 27: 100%"></div>
+            <div style="height: 16px; border-radius: 3px; background: #22c55e;" title="Dag 28: 100%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 8: TESTIMONIAL (Col span 1) -->
+      <div class="bento-card" style="grid-column: span 1;" data-spotlight>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="chip chip-purple">Tillit & Rating</span>
+            <span style="color: #eab308;">★★★★★ 5.0</span>
+          </div>
+          <p style="font-size: 0.95rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 20px;">
+            «Bento Grid forandret måten vi presenterer data på. Brukerne våre forstår arkitekturen på sekunder.»
+          </p>
+          <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #38bdf8, #a855f7); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">👩‍🚀</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Elena Rostova</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">VP of Engineering @ Veloce</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BENTO PRICING CARDS -->
+    <section class="section" style="margin-bottom: 80px;">
+      <div class="section-heading-center">
+        <span class="hero-tag">MODULÆR PRISMODELL</span>
+        <h2 class="sub-title">Enkel, forutsigbar skalering</h2>
+        <p class="sub-desc">Velg ytelsen som matcher ditt utviklerteam.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div class="bento-card" data-spotlight>
+          <div class="card-inner">
+            <span class="chip chip-blue" style="width: fit-content; margin-bottom: 12px;">DEVELOPER</span>
+            <h3 class="card-title-sm">Indie Dev</h3>
+            <p class="card-sub-sm">For frilansere og prototyper.</p>
+            <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-mono); margin: 14px 0;">$0 <span style="font-size: 0.9rem; color: var(--text-muted);">/mnd</span></div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+              <li>✓ Opptil 3 Bento Dashboards</li>
+              <li>✓ Spotlight museffekter</li>
+              <li>✓ Fellesskaps-support</li>
+            </ul>
+            <button class="action-btn-shortcut" style="width: 100%; justify-content: center; padding: 12px;" onclick="showBentoConfirm('Valgte Indie Dev gratis plan')">Start Nå</button>
+          </div>
+        </div>
+
+        <div class="bento-card" style="border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);" data-spotlight>
+          <div class="card-inner">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span class="chip chip-green">ANBEFALT</span>
+              <span class="chip chip-pink">TEAM PRO</span>
+            </div>
+            <h3 class="card-title-sm">Scale Team</h3>
+            <p class="card-sub-sm">For rasktvoksende teknologiselskaper.</p>
+            <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-mono); margin: 14px 0; color: var(--accent-blue);">$49 <span style="font-size: 0.9rem; color: var(--text-muted);">/mnd</span></div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+              <li>✓ Ubegrensede Bento moduler</li>
+              <li>✓ Real-time Edge Radar</li>
+              <li>✓ Integrasjoner (Linear, Vercel, Figma)</li>
+              <li>✓ Prioritert 99.99% SLA</li>
+            </ul>
+            <button class="btn-primary-gradient" style="border: none; cursor: pointer; padding: 12px;" onclick="showBentoConfirm('Valgte Scale Team abonnent!')">Oppgrader til Scale ⚡</button>
+          </div>
+        </div>
+
+        <div class="bento-card" data-spotlight>
+          <div class="card-inner">
+            <span class="chip chip-purple" style="width: fit-content; margin-bottom: 12px;">ORGANIZATION</span>
+            <h3 class="card-title-sm">Enterprise</h3>
+            <p class="card-sub-sm">Dedikert infrastruktur og skreddersøm.</p>
+            <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-mono); margin: 14px 0;">Custom</div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+              <li>✓ Dedikerte edge noder</li>
+              <li>✓ SOC2 & ISO-27001 sertifisert</li>
+              <li>✓ Dedikert løsningsarkitekt</li>
+            </ul>
+            <button class="action-btn-shortcut" style="width: 100%; justify-content: center; padding: 12px;" onclick="showBentoConfirm('Kontaktforespørsel sendt til Enterprise salg!')">Snakk med Salg</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON SECTION -->
+    <section id="features" class="comparison-section">
+      <div class="section-heading-center">
+        <h2 class="sub-title">Neo-Brutalism vs. Bento Grid</h2>
+        <p class="sub-desc">Hvordan de to trendene skiller seg fra hverandre i filosofi og uttrykk:</p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Egenskap</th>
+              <th>🥊 Neo-Brutalism</th>
+              <th>🍱 Bento Grid UI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Borders / Rammer</strong></td>
+              <td>Tykke, sorte linjer (3–4px solid black)</td>
+              <td>Ultratynne, semi-transparente (1px med subtil glød)</td>
+            </tr>
+            <tr>
+              <td><strong>Skygger & Dybde</strong></td>
+              <td>100% harde skygger uten blur (`4px 4px 0px #000`)</td>
+              <td>Myke gradients, spotlight-lys og frostet glass (`blur`)</td>
+            </tr>
+            <tr>
+              <td><strong>Fargepalett</strong></td>
+              <td>Høymettede primærfarger, neongult og rosa</td>
+              <td>Mørkegrå / grafitt med neon-aksenter eller dyp sort</td>
+            </tr>
+            <tr>
+              <td><strong>Stemning & Målgruppe</strong></td>
+              <td>Leken, opprørsk, retro, iøynefallende</td>
+              <td>Sofistikert, presis, ingeniøraktig, minimalistisk</td>
+            </tr>
+            <tr>
+              <td><strong>Typisk Bruk</strong></td>
+              <td>Gumroad, kreative byråer, merkevarer for Gen-Z</td>
+              <td>Apple, Linear, Raycast, Vercel, Supabase</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="switch-cta-box">
+        <h3>Vil du oppleve kontrasten?</h3>
+        <p>Hopp tilbake til Neo-Brutalism-siden vi bygget for å sammenligne med dine egne øyne!</p>
+        <a href="index.html" class="btn-primary-gradient">Gå til Neo-Brutalism Showroom 🥊</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- QUICK SEARCH COMMAND MODAL (Triggered by ⌘K) -->
+  <div id="cmdModal" class="cmd-overlay hidden">
+    <div class="cmd-box">
+      <div class="cmd-header">
+        <span class="cmd-search-icon">🔍</span>
+        <input type="text" id="cmdInput" placeholder="Skriv en kommando eller søk..." autocomplete="off">
+        <kbd class="cmd-esc-badge">ESC</kbd>
+      </div>
+      <div class="cmd-results">
+        <div class="cmd-group-title">Navigasjon</div>
+        <a href="index.html" class="cmd-item">
+          <span>🥊 Gå til Neo-Brutalism nettsiden</span>
+          <kbd>Enter</kbd>
+        </a>
+        <div class="cmd-item" id="cmdToggleTheme">
+          <span>🌓 Bytt fargetema (Mørk / Lys)</span>
+          <kbd>T</kbd>
+        </div>
+        <div class="cmd-item" id="cmdTriggerWave">
+          <span>📈 Simuler databølge i graf</span>
+          <kbd>W</kbd>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bento-footer">
+    <p>Bento Grid UI Demonstrator // Laget for sammenligning og inspirasjon.</p>
+  </footer>
+
+  <script src="bento.js"></script>
+</body>
+</html>
